@@ -1,15 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  files: {
-    // All files Tailwind should scan
-    include: [
-      './resources/**/*.{blade.php,js,vue,ts}',
-    ],
-  },
+  content: [
+    './resources/**/*.{blade.php,js,vue,ts}',
+  ],
+  safelist: ['bg-primary', 'text-primary'], // <-- Add this
   theme: {
     extend: {
       colors: {
-        primary: '#f97316',
+        dshs: '#f97316', // <-- orange
       },
     },
   },
