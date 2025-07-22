@@ -24,7 +24,7 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import { FilmIcon, LayoutDashboard, LeafyGreen } from "lucide-vue-next";
+import { Calculator, FilmIcon, LayoutDashboard, LeafyGreen, LifeBuoy, Users } from "lucide-vue-next";
 
 const items = [
     {
@@ -41,6 +41,21 @@ const items = [
         label: "Films",
         url: "/admin/films",
         icon: FilmIcon,
+    },
+    {
+        label: "Roles",
+        url: "/admin/roles",
+        icon: LifeBuoy,
+    },
+    {
+        label: "Users",
+        url: "/admin/users",
+        icon: Users,
+    },
+    {
+        label: "Calculator",
+        url: "/admin/calculator",
+        icon: Calculator,
     },
 ];
 </script>

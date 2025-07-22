@@ -2,27 +2,27 @@
 import NavigationLink from "@/components/NavigationLink.vue";
 import Pagination from "@/components/Pagination.vue";
 import AdminLayout from "@/Pages/Layouts/AdminLayout.vue";
-import { usePage } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 
 const page = usePage();
-const categories = computed(() => page.props.categories);
+const roles = computed(() => page.props.roles);
 </script>
 
 <template>
     <AdminLayout>
         <div class="flex text-white font-sans mb-5">
             <h3>Dashboard</h3>
-            /categories
+            /roles
         </div>
 
         <div class="flex flex-col">
             <div class="flex justify-between gap-5 items-center my-6">
                 <h3 class="text-white text-lg font-semibold">
-                    Categories Table
+                    Roles Table
                 </h3>
-                <NavigationLink href="/admin/categories/create"
-                    >Create Category</NavigationLink
+                <NavigationLink href="/admin/roles/create"
+                    >Create Roles</NavigationLink
                 >
             </div>
             <div class="-m-1.5 overflow-x-auto">
@@ -89,20 +89,22 @@ const categories = computed(() => page.props.categories);
                                             scope="col"
                                             class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                                         >
-                                            Name
+                                            Role Name
                                         </th>
                                         <th
                                             scope="col"
                                             class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                                         >
-                                            Age
+                                            Created At
                                         </th>
                                         <th
                                             scope="col"
                                             class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                                         >
-                                            Address
+                                            Updated At
                                         </th>
+
+
                                         <th
                                             scope="col"
                                             class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
@@ -111,12 +113,12 @@ const categories = computed(() => page.props.categories);
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody v-if="categories.data.length"
+                                <tbody v-if="roles.data.length"
                                     class="divide-y divide-gray-200 dark:divide-neutral-700"
                                 >
                                     <tr
-                                        v-for="category in categories.data"
-                                        :key="category.id"
+                                        v-for="role in roles.data"
+                                        :key="role.id"
                                     >
                                         <td class="py-3 ps-4">
                                             <div class="flex items-center h-5">
@@ -135,21 +137,27 @@ const categories = computed(() => page.props.categories);
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200"
                                         >
-                                            {{ category.name }}
+                                            {{ role.name }}
+                                        </td>
+
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+                                        >
+                                            {{ role.created_at }}
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
                                         >
-                                            45
+                                            {{ role.updated_at }}
                                         </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+                                         <td
+                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium space-x-3"
                                         >
-                                            {{ category.created_at }}
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
-                                        >
+                                            <Link
+                                                :href="`/admin/roles/${role.id}/edit`"
+                                                >Edit</Link
+                                            >
+
                                             <button
                                                 type="button"
                                                 class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-hidden focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
@@ -165,6 +173,6 @@ const categories = computed(() => page.props.categories);
                 </div>
             </div>
         </div>
-        <Pagination :links="categories"/>
+        <Pagination :links="roles"/>
     </AdminLayout>
 </template>

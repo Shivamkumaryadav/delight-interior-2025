@@ -1,28 +1,25 @@
 <script setup>
 import NavigationLink from "@/components/NavigationLink.vue";
-import Pagination from "@/components/Pagination.vue";
 import AdminLayout from "@/Pages/Layouts/AdminLayout.vue";
-import { usePage } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 
 const page = usePage();
-const categories = computed(() => page.props.categories);
+const films = computed(() => page.props.films.data);
 </script>
 
 <template>
     <AdminLayout>
         <div class="flex text-white font-sans mb-5">
             <h3>Dashboard</h3>
-            /categories
+            /Films
         </div>
 
         <div class="flex flex-col">
             <div class="flex justify-between gap-5 items-center my-6">
-                <h3 class="text-white text-lg font-semibold">
-                    Categories Table
-                </h3>
-                <NavigationLink href="/admin/categories/create"
-                    >Create Category</NavigationLink
+                <h3 class="text-white text-lg font-semibold">Films Table</h3>
+                <NavigationLink href="/admin/films/create"
+                    >Create Film</NavigationLink
                 >
             </div>
             <div class="-m-1.5 overflow-x-auto">
@@ -95,15 +92,40 @@ const categories = computed(() => page.props.categories);
                                             scope="col"
                                             class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                                         >
-                                            Age
+                                            UV Rejection (in %)
                                         </th>
                                         <th
                                             scope="col"
                                             class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                                         >
-                                            Address
+                                            Thickness (in mm)
                                         </th>
                                         <th
+                                            scope="col"
+                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                                        >
+                                            Warranty (in years)
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                                        >
+                                            Price
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                                        >
+                                            Created At
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                                        >
+                                            Updated At
+                                        </th>
+                                        <th
+                                            colspan="2"
                                             scope="col"
                                             class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                                         >
@@ -111,13 +133,11 @@ const categories = computed(() => page.props.categories);
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody v-if="categories.data.length"
+                                <tbody
+                                    v-if="films.length"
                                     class="divide-y divide-gray-200 dark:divide-neutral-700"
                                 >
-                                    <tr
-                                        v-for="category in categories.data"
-                                        :key="category.id"
-                                    >
+                                    <tr v-for="film in films" :key="film.id">
                                         <td class="py-3 ps-4">
                                             <div class="flex items-center h-5">
                                                 <input
@@ -135,21 +155,46 @@ const categories = computed(() => page.props.categories);
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200"
                                         >
-                                            {{ category.name }}
+                                            {{ film.name }}
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200"
+                                        >
+                                            {{ film.uv_rejection }}%
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200"
+                                        >
+                                            {{ film.thickness }}
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200"
+                                        >
+                                            {{ film.warranty }}
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200"
+                                        >
+                                            {{ film.price }}
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
                                         >
-                                            45
+                                            {{ film.updated_at }}
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
                                         >
-                                            {{ category.created_at }}
+                                            {{ film.created_at }}
                                         </td>
                                         <td
-                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
+                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium space-x-3"
                                         >
+                                            <Link
+                                                :href="`/admin/films/${film.id}/edit`"
+                                                >Edit</Link
+                                            >
+
                                             <button
                                                 type="button"
                                                 class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-hidden focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
@@ -165,6 +210,8 @@ const categories = computed(() => page.props.categories);
                 </div>
             </div>
         </div>
+        <!-- pagination -->
         <Pagination :links="categories"/>
+
     </AdminLayout>
 </template>
