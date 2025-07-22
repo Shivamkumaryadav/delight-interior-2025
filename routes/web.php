@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminSessionController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,3 +19,11 @@ Route::prefix('/admin')->name('admin.')->middleware('role:admin,superadmin')->gr
 
 
 });
+
+// Route::get('/admin', function(){
+//     User::create([
+//         'name' => 'shivam',
+//         'email' => 'shivam@gmail.com',
+//         'password' => '00000000'
+//     ]);
+// });

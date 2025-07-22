@@ -15,7 +15,7 @@ class AdminCategoryController extends Controller
     {
         $categories = Category::with('projects')->paginate(10);
         // dd($categories);
-        return Inertia::render('Admin/Categories/Index',[
+        return Inertia::render('Admin/Categories/Index', [
             'categories' => $categories
         ]);
     }
@@ -43,7 +43,7 @@ class AdminCategoryController extends Controller
         ]);
 
         session()->flash('success', 'Category has been created.');
-        return to_route('admin.dashboard');
+        return to_route('admin.categories.index');
     }
 
     /**
@@ -57,24 +57,38 @@ class AdminCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return Inertia::render('Admin/Categories/Edit', [
+            'category' => $category
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3'
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => str()->slug($request->name)
+        ]);
+
+        session()->flash('success', 'Category has been updated.');
+        return to_route('admin.categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        session()->flash('success', 'Category has been updated.');
+        return to_route('admin.categories.index');
     }
 }

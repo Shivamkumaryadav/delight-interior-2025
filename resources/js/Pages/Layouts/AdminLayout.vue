@@ -1,15 +1,15 @@
-<script setup lang="ts">
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import AppSidebar from "@/components/AppSidebar.vue";
+<script setup>
+import Navbar from "@/components/admin/Navbar.vue";
+import Sidebar from "@/components/admin/Sidebar.vue";
 </script>
 
 <template>
-    <SidebarProvider>
-        <AppSidebar />
+    <Navbar />
+    <Sidebar />
+ <div class="p-4 sm:ml-64">
+   <div class="p-4 rounded-lg dark:border-gray-700 mt-14">
+      <slot></slot>
+   </div>
+</div>
 
-        <main class="w-full bg-[#960016]">
-            <SidebarTrigger  class="sticky top-2 z-20 cursor-pointer" />
-            <slot />
-        </main>
-    </SidebarProvider>
 </template>
