@@ -8,6 +8,14 @@
 @source '../**/*.js';
 
 @theme {
-  --color-red-800: #960016;
+  --color-red-800: ##F7FAFC;
+  /* --color-red-800: #960016; */
   --color-cream: #FFECE5;
+  --color-sidebar: #2C3E50;
+  --color-navbar: #2C3E50;
+  --color-button: #FF7043;
+  --color-button-hover: #F4511E;
+  --color-black: #263238;
+  --color-accent: #FFD54F;
+  --color-primary: #f5f5f5;
 }

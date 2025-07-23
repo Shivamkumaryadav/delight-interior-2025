@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
   </head>
-  <body class="{{ request()->is('admin/*') ? 'bg-red-800' : 'bg-gray-300' }}">
+  <body class="{{ request()->is('admin/*') ? 'bg-[#FAF9F6]' : 'bg-gray-300' }}">
     @inertia
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script>

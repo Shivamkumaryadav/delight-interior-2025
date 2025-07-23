@@ -21,8 +21,9 @@ Route::prefix('/admin')->name('admin.')->middleware('role:admin,superadmin')->gr
     Route::resource('/categories', AdminCategoryController::class);
     Route::resource('/films', AdminFilmController::class);
     Route::resource('/roles', AdminRoleController::class);
-    Route::get('/calculator', [AdminCalculatorController::class, 'index']);
-    Route::post('/calculator', [AdminCalculatorController::class, 'store']);
+    Route::get('/calculator', [AdminCalculatorController::class, 'index'])->name('calculator.index');
+    Route::post('/calculator', [AdminCalculatorController::class, 'store'])->name('calculator.store');
+    Route::get('/calculator/show', [AdminCalculatorController::class, 'show'])->name('calculator.show');
 
 });
 
