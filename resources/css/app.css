@@ -10,8 +10,8 @@
 @theme {
   --color-red-800: ##F7FAFC;
   /* --color-red-800: #960016; */
-  --color-cream: #FFECE5;
-  --color-sidebar: #2C3E50;
+  --color-gray: #e7edf3;
+  --color-sidebar: #fafafa;
   --color-navbar: #2C3E50;
   --color-button: #FF7043;
   --color-button-hover: #F4511E;

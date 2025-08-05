@@ -6,10 +6,20 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminFilmController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AdminSessionController;
+use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+// home and films routes
+Route::get('/',[HomeController::class, 'index'])->name('home');
+Route::get('/films', function(){
+    return Inertia::render('Frontend/Films/Index');
+});
+Route::get('/films/show', function(){
+    return Inertia::render('Frontend/Films/Show');
+});
 
 Route::prefix('/admin')->middleware('guest')->group(function(){
     Route::get('/login', [AdminSessionController::class, 'index'])->name('admin.login');

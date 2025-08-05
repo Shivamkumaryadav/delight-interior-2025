@@ -1,6 +1,6 @@
 <template>
     <nav
-        class="fixed top-0 z-50 w-full bg-navbar border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+        class="fixed top-0 z-50 w-full bg-orange-600 border-b border-gray-200 "
     >
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
