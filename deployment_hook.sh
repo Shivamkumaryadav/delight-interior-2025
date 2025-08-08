@@ -3,6 +3,9 @@
 # Navigate to the application root
 cd ~/applications/delight_interior/public_html
 
+# Pull the latest changes from GitHub
+git pull origin master
+
 # Install PHP dependencies
 composer install --no-interaction --prefer-dist --optimize-autoloader
 
