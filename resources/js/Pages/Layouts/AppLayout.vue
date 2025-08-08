@@ -7,7 +7,7 @@
             <div class="flex justify-between items-center">
                 <div>
                     <Link href="/" class="lg:text-xl font-bold uppercase"
-                        >Delight Interior</Link
+                        >Delight Interior 2025</Link
                     >
                 </div>
 
