@@ -7,7 +7,7 @@
             <div class="flex justify-between items-center">
                 <div>
                     <Link href="/" class="lg:text-xl font-bold uppercase"
-                        >Delight Interior 2025</Link
+                        >Delight Interior 2025 </Link
                     >
                 </div>
 
@@ -21,7 +21,7 @@
                         </div>
                         <div class=" ">
                             <Link href="/films">
-                                <div class="text-[#B22A42]">Films</div>
+                                <div class="text-[#B22A42]">Films Sun</div>
                                 <div
                                     class="bg-red-600 h-[5px] rounded-tl-xl rounded-br-xl"
                                 ></div>
