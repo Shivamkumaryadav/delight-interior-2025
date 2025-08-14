@@ -3,7 +3,7 @@ name: Deploy Laravel to FTP
 on:
   push:
     branches:
-      - master  # or master, depending on your default branch
+      - master  # change if your default branch is different
 
 jobs:
   deploy:
@@ -29,21 +29,37 @@ jobs:
           npm run build
         continue-on-error: true
 
-      - name: Upload to FTP
+      # Upload Laravel project (everything except public) to /htdocs/laravel
+      - name: Upload Laravel backend to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./  # root of your repository
-          server-dir: /htdocs/  # directly in htdocs
+          local-dir: ./  # root of repository
+          server-dir: /htdocs/laravel/
           exclude: |
             **/.git*
             **/.github*
             node_modules/**
+            public/**
             vendor/**
             tests/**
             storage/framework/cache/**
             storage/framework/sessions/**
             storage/framework/views/**
             storage/logs/**
+
+      # Upload only public folder contents to /htdocs
+      - name: Upload Laravel public folder to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./public/
+          server-dir: /htdocs/
+          exclude: |
+            **/.git*
+            **/.github*
+            node_modules/**
