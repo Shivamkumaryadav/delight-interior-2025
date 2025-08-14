@@ -26,6 +26,9 @@ Route::prefix('/admin')->middleware('guest')->group(function(){
     Route::post('/login', [AdminSessionController::class, 'store'])->name('admin.login.store');
 
 });
+
+Route::delete('/logout', [AdminSessionController::class, 'logout'])->name('admin.logout');
+
 Route::prefix('/admin')->name('admin.')->middleware('role:admin,superadmin')->group(function(){
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('/categories', AdminCategoryController::class);

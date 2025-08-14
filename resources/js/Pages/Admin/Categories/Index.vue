@@ -2,7 +2,7 @@
 import NavigationLink from "@/components/NavigationLink.vue";
 import Pagination from "@/components/Pagination.vue";
 import AdminLayout from "@/Pages/Layouts/AdminLayout.vue";
-import { usePage } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 
 const page = usePage();
@@ -11,17 +11,15 @@ const categories = computed(() => page.props.categories);
 
 <template>
     <AdminLayout>
-        <div class="flex text-white font-sans mb-5">
+        <div class="flex font-sans mb-5">
             <h3>Dashboard</h3>
             /categories
         </div>
 
         <div class="flex flex-col">
             <div class="flex justify-between gap-5 items-center my-6">
-                <h3 class="text-white text-lg font-semibold">
-                    Categories Table
-                </h3>
-                <NavigationLink href="/admin/categories/create"
+                <h3 class="text-lg font-semibold">Categories Table</h3>
+                <NavigationLink href="/admin/categories/create" class="text-white"
                     >Create Category</NavigationLink
                 >
             </div>
@@ -111,7 +109,8 @@ const categories = computed(() => page.props.categories);
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody v-if="categories.data.length"
+                                <tbody
+                                    v-if="categories.data.length"
                                     class="divide-y divide-gray-200 dark:divide-neutral-700"
                                 >
                                     <tr
@@ -150,6 +149,12 @@ const categories = computed(() => page.props.categories);
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
                                         >
+                                            <Link
+                                                :href="`/admin/categories/${category.id}/edit`"
+                                                class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-hidden focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
+                                            >
+                                                Edit
+                                            </Link>
                                             <button
                                                 type="button"
                                                 class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-hidden focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
@@ -165,6 +170,6 @@ const categories = computed(() => page.props.categories);
                 </div>
             </div>
         </div>
-        <Pagination :links="categories"/>
+        <Pagination :links="categories" />
     </AdminLayout>
 </template>

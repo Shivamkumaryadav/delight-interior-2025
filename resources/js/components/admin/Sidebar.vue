@@ -17,6 +17,15 @@
                         <span class="ms-3">{{ item.label }}</span>
                     </Link>
                 </li>
+                 <Link
+                        href="/logout"
+                        as="button"
+                        method="delete"
+                        class="w-full cursor-pointer flex items-center p-2 hover:text-white hover:bg-orange-600 text-black rounded-lg group"
+                    >
+                    <LogOut />
+                        <span class="ms-3">Logout</span>
+                    </Link>
             </ul>
         </div>
     </aside>
@@ -24,7 +33,7 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import { Calculator, FilmIcon, LayoutDashboard, LeafyGreen, LifeBuoy, Users } from "lucide-vue-next";
+import { Calculator, FilmIcon, LayoutDashboard, LeafyGreen, LifeBuoy, LogOut, Users } from "lucide-vue-next";
 
 const items = [
     {

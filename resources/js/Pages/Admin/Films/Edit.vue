@@ -9,45 +9,49 @@ import { useForm, usePage } from "@inertiajs/vue3";
 import SelectInput from "@/components/SelectInput.vue";
 import { computed } from "vue";
 import Summernote from "@/components/admin/Summernote.vue";
+import ProcesingButton from "@/components/ProcesingButton.vue";
 
 const page = usePage();
 const film = computed(() => page.props.film);
+const categories = computed(() => page.props.categories);
+
+
 const form = useForm({
     name: film.value.name,
     price: film.value.price,
-    category: film.value.category,
+    category: film.value.category_id,
     description: film.value.description,
     thickness: film.value.thickness,
     uv_rejection: film.value.uv_rejection,
     warranty : film.value.warranty
 });
-function store() {
-    form.put(`/admin/films/${film.id}`);
+function update() {
+    form.put(`/admin/films/${film.value.id}`);
 }
 </script>
 
 <template>
     <AdminLayout>
-        <div class="flex text-white font-sans mb-5">
+        <div class="flex font-sans mb-5">
             <h3>Dashboard</h3>
-            /films/create
+            /films/update
         </div>
 
-        <div class="bg-white max-w-l mt-16 rounded-lg p-4">
-            <h3 class="text-2xl font-semibold text-center uppercase">
-                Create new Film
+        <div class="bg-white max-w-l mt-16 rounded-lg p-4 border border-gray-200">
+            <h3 class="text-2xl font-semibold text-center my-5 uppercase">
+                Update Film
             </h3>
-            <form @submit.prevent="store">
-                <div class="space-y-5 md:space-y-0 md:flex gap-x-32 my-5">
+            <form @submit.prevent="update">
+                <div class="space-y-5 md:space-y-0 md:flex gap-x-32 mt-8">
                     <div class="space-y-1 flex-1">
                         <Label for="name">Name</Label>
-                        <Input class="flex" v-model="form.name" />
+                        <Input class="flex py-5 border border-gray-300 focus:broder-0 focus:ring-red-500" v-model="form.name" />
                         <ErrorMessage :error="form.errors.name" />
                     </div>
                     <div class="space-y-1 flex-1">
                         <Label for="price">Price</Label>
                         <Input
-                            class="flex"
+                            class="flex py-5 border border-gray-300 focus:broder-0 focus:ring-red-500"
                             v-model="form.price"
                             placeholder="Film price"
                         />
@@ -57,12 +61,12 @@ function store() {
                 <div class="space-y-5 md:space-y-0 md:flex gap-x-32 my-5">
                     <div class="space-y-1 flex-1">
                         <Label for="thickness">Thickness</Label>
-                        <Input class="flex" v-model="form.thickness" />
+                        <Input class="flex py-5 border border-gray-300 focus:broder-0 focus:ring-red-500" v-model="form.thickness" />
                         <ErrorMessage :error="form.errors.thickness" />
                     </div>
                     <div class="space-y-1 flex-1">
                         <Label for="uv-rejection">Uv Rejection</Label>
-                        <Input class="flex" v-model="form.uv_rejection" />
+                        <Input class="flex py-5 border border-gray-300 focus:broder-0 focus:ring-red-500" v-model="form.uv_rejection" />
                         <ErrorMessage :error="form.errors.uv_rejection" />
                     </div>
                 </div>
@@ -83,7 +87,7 @@ function store() {
 
                     <div class="space-y-1 flex-1">
                         <Label for="warranty">Warranty</Label>
-                        <Input class="flex" v-model="form.warranty" />
+                        <Input class="flex py-5 border border-gray-300 focus:broder-0 focus:ring-red-500" v-model="form.warranty" />
                         <ErrorMessage :error="form.errors.warranty" />
                     </div>
                 </div>
@@ -94,14 +98,11 @@ function store() {
                     <ErrorMessage :error="form.errors.description" />
                 </div>
 
-                <div class="mt-6 flex justify-between gap-6">
-                    <NavigationLink href="/admin/films" class="text-center border cursor-pointer w-full bg-red-800  font-semibold py-2 px-4 rounded-md transition duration-300">Cancel</NavigationLink>
-                    <button
-                        type="submit"
-                        class="cursor-pointer w-full bg-red-800 text-white font-semibold py-2 px-4 rounded-md transition duration-300"
-                    >
-                        Update Film
-                    </button>
+                <div class=" flex justify-between gap-6 mt-16 mb-8">
+                    <NavigationLink href="/admin/films" class="hover:text-white text-center border border-red-500 cursor-pointer w-full text-gray-800 bg-white  font-semibold py-2 px-4 rounded-md transition duration-300">Cancel</NavigationLink>
+                   <ProcesingButton :processing="form.processing">
+                    Update Film
+                   </ProcesingButton>
                 </div>
             </form>
         </div>

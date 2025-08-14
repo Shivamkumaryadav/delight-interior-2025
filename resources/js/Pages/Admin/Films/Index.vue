@@ -10,15 +10,15 @@ const films = computed(() => page.props.films.data);
 
 <template>
     <AdminLayout>
-        <div class="flex text-white font-sans mb-5">
+        <div class="flex  font-sans mb-5">
             <h3>Dashboard</h3>
             /Films
         </div>
 
         <div class="flex flex-col">
             <div class="flex justify-between gap-5 items-center my-6">
-                <h3 class="text-white text-lg font-semibold">Films Table</h3>
-                <NavigationLink href="/admin/films/create"
+                <h3 class=" text-lg font-semibold">Films Table</h3>
+                <NavigationLink href="/admin/films/create" class="text-white"
                     >Create Film</NavigationLink
                 >
             </div>
@@ -211,7 +211,6 @@ const films = computed(() => page.props.films.data);
             </div>
         </div>
         <!-- pagination -->
-        <Pagination :links="categories"/>
-
+        <Pagination :links="categories" />
     </AdminLayout>
 </template>

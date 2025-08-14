@@ -27,7 +27,7 @@ class AdminFilmController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Films/Create',[
+        return Inertia::render('Admin/Films/Create', [
             'categories' => Category::all()
         ]);
     }
@@ -68,15 +68,17 @@ class AdminFilmController extends Controller
      */
     public function edit(Film $film)
     {
-        return Inertia::render('Admin/Films/Edit',[
-            'film' => $film
+        return Inertia::render('Admin/Films/Edit', [
+            'film' => $film,
+            'categories' => Category::all()
+
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Film $film)
+    public function update(AdminFilmRequest $request, Film $film)
     {
         $film->update($request->validated());
         session('success', 'Film has been updated.');

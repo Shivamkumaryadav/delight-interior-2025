@@ -1,7 +1,5 @@
 <template>
-    <nav
-        class="fixed top-0 z-50 w-full bg-orange-600 border-b border-gray-200 "
-    >
+    <nav class="fixed top-0 z-50 w-full bg-orange-600 border-b border-gray-200">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center justify-start rtl:justify-end">
@@ -10,11 +8,11 @@
                         data-drawer-toggle="logo-sidebar"
                         aria-controls="logo-sidebar"
                         type="button"
-                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        class="inline-flex items-center p-2 cursor-pointer text-sm text-black bg-white rounded-lg sm:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-300 ease-in-out hover:bg-gray-100 hover:scale-105 active:scale-95"
                     >
                         <span class="sr-only">Open sidebar</span>
                         <svg
-                            class="w-6 h-6"
+                            class="w-6 h-6 text-black transition-colors duration-300"
                             aria-hidden="true"
                             fill="currentColor"
                             viewBox="0 0 20 20"
@@ -27,6 +25,7 @@
                             ></path>
                         </svg>
                     </button>
+
                     <a href="" class="flex ms-2 md:me-24">
                         <!-- <img
                             src="https://flowbite.com/docs/images/logo.svg"

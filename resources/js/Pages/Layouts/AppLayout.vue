@@ -56,7 +56,7 @@
         </div>
 
         <!-- footer -->
-        <Footer class="border-t py-5 text-center"> 2025 </Footer>
+        <footer class="border-t py-5 text-center"> 2025 </footer>
     </div>
 </template>
 

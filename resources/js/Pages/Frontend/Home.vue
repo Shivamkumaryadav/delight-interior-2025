@@ -103,7 +103,7 @@
         <!-- films section -->
         <section class="my-6">
             <div class="flex justify-between gap-5 items-center">
-                <h3 class="text-xl font-semibold my-3">Our Films</h3>
+                <h3 class="text-xl font-semibold my-3">SUn Control Films</h3>
                 <div>
                     <Link href="/">View All</Link>
                 </div>
@@ -183,6 +183,171 @@
                 </div>
             </div>
         </section>
+        <section class="my-6">
+            <div class="flex justify-between gap-5 items-center">
+                <h3 class="text-xl font-semibold my-3">Decorative Films</h3>
+                <div>
+                    <Link href="/">View All</Link>
+                </div>
+            </div>
+            <div class="grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                <div>
+                    <div
+                        class="w-full h-40 aspect-square overflow-hidden rounded-xl"
+                    >
+                        <img
+                            class="rounded-xl w-full h-full object-cover"
+                            src="https://media.istockphoto.com/id/680906456/photo/cloud-and-blue-sky-from-the-airplane-windows.jpg?s=612x612&w=0&k=20&c=yQM3tgfPSg38izkIo9lgc2OcKsWYhROzjEBcTp8Y7ko="
+                            alt=""
+                        />
+                    </div>
+                    <div class="my-2">
+                        <h3 class="text-md font-[500]">Sun Control Film</h3>
+                        <div class="">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Nostrum natus sequi quod
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div
+                        class="w-full h-40 aspect-square overflow-hidden rounded-xl"
+                    >
+                        <img
+                            class="rounded-xl w-full h-full object-cover"
+                            src="https://media.istockphoto.com/id/680906456/photo/cloud-and-blue-sky-from-the-airplane-windows.jpg?s=612x612&w=0&k=20&c=yQM3tgfPSg38izkIo9lgc2OcKsWYhROzjEBcTp8Y7ko="
+                            alt=""
+                        />
+                    </div>
+                    <div class="my-2">
+                        <h3 class="text-md font-[500]">Sun Control Film</h3>
+                        <div class="">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Nostrum natus sequi quod
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div
+                        class="w-full h-40 aspect-square overflow-hidden rounded-xl"
+                    >
+                        <img
+                            class="rounded-xl w-full h-full object-cover"
+                            src="https://media.istockphoto.com/id/680906456/photo/cloud-and-blue-sky-from-the-airplane-windows.jpg?s=612x612&w=0&k=20&c=yQM3tgfPSg38izkIo9lgc2OcKsWYhROzjEBcTp8Y7ko="
+                            alt=""
+                        />
+                    </div>
+                    <div class="my-2">
+                        <h3 class="text-md font-[500]">Sun Control Film</h3>
+                        <div class="">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Nostrum natus sequi quod
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div
+                        class="w-full h-40 aspect-square overflow-hidden rounded-xl"
+                    >
+                        <img
+                            class="rounded-xl w-full h-full object-cover"
+                            src="https://media.istockphoto.com/id/680906456/photo/cloud-and-blue-sky-from-the-airplane-windows.jpg?s=612x612&w=0&k=20&c=yQM3tgfPSg38izkIo9lgc2OcKsWYhROzjEBcTp8Y7ko="
+                            alt=""
+                        />
+                    </div>
+                    <div class="my-2">
+                        <h3 class="text-md font-[500]">Sun Control Film</h3>
+                        <div class="">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Nostrum natus sequi quod
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="my-6">
+            <div class="flex justify-between gap-5 items-center">
+                <h3 class="text-xl font-semibold my-3">Privacy Films</h3>
+                <div>
+                    <Link href="/">View All</Link>
+                </div>
+            </div>
+            <div class="grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                <div>
+                    <div
+                        class="w-full h-40 aspect-square overflow-hidden rounded-xl"
+                    >
+                        <img
+                            class="rounded-xl w-full h-full object-cover"
+                            src="https://media.istockphoto.com/id/680906456/photo/cloud-and-blue-sky-from-the-airplane-windows.jpg?s=612x612&w=0&k=20&c=yQM3tgfPSg38izkIo9lgc2OcKsWYhROzjEBcTp8Y7ko="
+                            alt=""
+                        />
+                    </div>
+                    <div class="my-2">
+                        <h3 class="text-md font-[500]">Sun Control Film</h3>
+                        <div class="">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Nostrum natus sequi quod
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div
+                        class="w-full h-40 aspect-square overflow-hidden rounded-xl"
+                    >
+                        <img
+                            class="rounded-xl w-full h-full object-cover"
+                            src="https://media.istockphoto.com/id/680906456/photo/cloud-and-blue-sky-from-the-airplane-windows.jpg?s=612x612&w=0&k=20&c=yQM3tgfPSg38izkIo9lgc2OcKsWYhROzjEBcTp8Y7ko="
+                            alt=""
+                        />
+                    </div>
+                    <div class="my-2">
+                        <h3 class="text-md font-[500]">Sun Control Film</h3>
+                        <div class="">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Nostrum natus sequi quod
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div
+                        class="w-full h-40 aspect-square overflow-hidden rounded-xl"
+                    >
+                        <img
+                            class="rounded-xl w-full h-full object-cover"
+                            src="https://media.istockphoto.com/id/680906456/photo/cloud-and-blue-sky-from-the-airplane-windows.jpg?s=612x612&w=0&k=20&c=yQM3tgfPSg38izkIo9lgc2OcKsWYhROzjEBcTp8Y7ko="
+                            alt=""
+                        />
+                    </div>
+                    <div class="my-2">
+                        <h3 class="text-md font-[500]">Sun Control Film</h3>
+                        <div class="">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Nostrum natus sequi quod
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div
+                        class="w-full h-40 aspect-square overflow-hidden rounded-xl"
+                    >
+                        <img
+                            class="rounded-xl w-full h-full object-cover"
+                            src="https://media.istockphoto.com/id/680906456/photo/cloud-and-blue-sky-from-the-airplane-windows.jpg?s=612x612&w=0&k=20&c=yQM3tgfPSg38izkIo9lgc2OcKsWYhROzjEBcTp8Y7ko="
+                            alt=""
+                        />
+                    </div>
+                    <div class="my-2">
+                        <h3 class="text-md font-[500]">Sun Control Film</h3>
+                        <div class="">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Nostrum natus sequi quod
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- why choose us section -->
           <h2 class=" text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-5">Why Choose SunGuard Films?</h2>

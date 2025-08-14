@@ -23,4 +23,11 @@ class AdminSessionController extends Controller {
         session()->flash( 'success', 'Welcome back!' );
         return to_route( 'admin.dashboard' );
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        session()->flash('Logged out. See you again soon!');
+        return redirect()->route('admin.login');
+    }
 }

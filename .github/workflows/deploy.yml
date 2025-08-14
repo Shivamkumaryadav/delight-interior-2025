@@ -1,0 +1,49 @@
+name: Deploy Laravel to FTP
+
+on:
+  push:
+    branches:
+      - master  # or master, depending on your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, bcmath, intl, pdo_mysql
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Build frontend (if using Laravel Mix/Vite)
+        run: |
+          npm install
+          npm run build
+        continue-on-error: true
+
+      - name: Upload to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./  # root of your repository
+          server-dir: /htdocs/  # directly in htdocs
+          exclude: |
+            **/.git*
+            **/.github*
+            node_modules/**
+            vendor/**
+            tests/**
+            storage/framework/cache/**
+            storage/framework/sessions/**
+            storage/framework/views/**
+            storage/logs/**

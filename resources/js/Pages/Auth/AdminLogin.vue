@@ -13,7 +13,7 @@
                     <Input
                         v-model="form.email"
                         type="email"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full px-4 py-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                     />
                     <ErrorMessage :error="form.errors.email" />
                 </div>
@@ -26,24 +26,27 @@
                         <Input
                             v-model="form.password"
                             :type="passInputType"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            class="w-full px-4 py-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                         />
                         <!-- show and hide password eye button -->
-                        <span class="absolute right-3 top-2 cursor-pointer">
+                        <span
+                            class="absolute inset-y-0 right-3 flex items-center  "
+                        >
                             <Eye
-                                title="Hide Passsword"
-                                v-if="passInputType == 'text'"
-                                class="w-4"
+                                title="Hide Password"
+                                v-if="passInputType === 'text'"
+                                class="w-4 cursor-pointer"
                                 @click="hidePassword"
                             />
                             <EyeOff
-                                title="Show Passsword"
-                                class="w-4"
+                                title="Show Password"
+                                class="w-4 cursor-pointer"
                                 v-else
                                 @click="showPassword"
                             />
                         </span>
                     </div>
+
                     <ErrorMessage :error="form.errors.password" />
                 </div>
                 <ProcesingButton :processing="form.processing"
