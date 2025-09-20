@@ -51,7 +51,7 @@
             </div>
         </div>
         <!-- main content -->
-        <div class="flex-1 px-4  w-full lg:max-w-[80vw] mx-auto my-5">
+        <div class="flex-1 px-5 md:px-10  w-full  my-5">
             <slot></slot>
         </div>
 

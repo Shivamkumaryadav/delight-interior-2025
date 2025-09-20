@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminFilmRequest extends FormRequest
+class AdminUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,21 +21,17 @@ class AdminFilmRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules =  [
-            'name' => 'required|min:3|unique:films,name',
-            'description' => 'required',
-            'uv_rejection' => 'required|numeric',
-            'thickness' => 'required|numeric',
-            'warranty' => 'required|numeric',
-            'price' => 'required|numeric',
-            'category' => 'required'
-            // 'image' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+        $rules = [
+            'name' => 'required|min:3',
+            'email' => 'required|min:3|unique:users,email',
+            'password' => 'required|min:8|max:16',
+            'role' => 'required'
         ];
 
-        // for update request
         if($this->isMethod('PUT') || $this->isMethod('PATCH'))
         {
-            $rules['name'] = 'required|min:3|unique:films,name,' . $this->route('film')->id;
+            $rules['email'] = 'required|min:3|unique:users,email,' . $this->route('user')->id;
+            $rules['password'] = 'nullable';
         }
         return $rules;
     }

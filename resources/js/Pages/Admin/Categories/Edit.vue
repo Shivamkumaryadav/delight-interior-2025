@@ -34,7 +34,7 @@ function update()
                 <h3 class="text-xl font-semibold text-center mb-10">
                     Update Category
                 </h3>
-                <form @submit.prevent="store">
+                <form @submit.prevent="update">
                     <div class="space-y-1">
                         <Label for="name">Name</Label>
                         <Input

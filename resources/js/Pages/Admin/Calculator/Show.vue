@@ -64,96 +64,125 @@ function store() {
                 Send Calulation details on Mail
             </h3>
             <form @submit.prevent="store" class="my-6">
-                <div class="lg:flex justify-between gap-6 lg:space-y-0 space-y-5">
-                    <div class="w-full flex flex-col space-y-5">
-                        <div class="space-y-1 w-full">
-                            <Label for="email">User Email</Label>
-                            <Input
-                                type="email"
-                                class="w-full"
-                                v-model="form.email"
-                            />
-                            <ErrorMessage :error="form.errors.email" />
-                        </div>
-                        <div class="space-y-1">
-                            <Label for="offer_valid_date"
-                                >Offer valid Date
-                            </Label>
-                            <Input
-                                type="date"
-                                class="w"
-                                v-model="form.offer_valid_date"
-                            />
-                            <ErrorMessage
-                                :error="form.errors.offer_valid_date"
-                            />
-                        </div>
-                    </div>
+                <div
+                    class="w-full max-w-2xl mx-auto bg-background-light dark:bg-background-dark rounded-xl shadow-lg overflow-hidden border border-border-light dark:border-border-dark"
+                >
+                    <div class="p-6 sm:p-8">
+                        <h2
+                            class="text-2xl sm:text-3xl font-bold text-foreground-light dark:text-foreground-dark mb-6"
+                        >
+                            Cost Summary
+                        </h2>
+                        <div class="space-y-4 text-sm">
+                            <div
+                                class="flex justify-between items-center py-4 border-border-border-light dark:border-border-dark"
+                            >
+                                <!-- show the calculated details here -->
+                                <div class="w-full">
+                                    <div class="border-b pb-4 pt-2">
+                                        <div
+                                            class="flex justify-between gap-8 items-center"
+                                        >
+                                            <h3>Total Price:(without gst)</h3>
+                                            <div>
+                                                ₹ {{ calculations.totalPrice }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border-b pb-4 pt-2">
+                                        <div
+                                            class="flex justify-between gap-8 items-center"
+                                        >
+                                            <h3>GST ({{ form.gst }}%):</h3>
+                                            <div>
+                                                ₹ {{ calculations.gstAmount }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border-b pb-4 pt-2">
+                                        <div
+                                            class="flex justify-between gap-8 items-center"
+                                        >
+                                            <h3>SGST ({{ form.sgst }}%):</h3>
+                                            <div>
+                                                ₹ {{ calculations.sgstAmount }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border-b pb-4 pt-2">
+                                        <div
+                                            class="flex justify-between gap-8 items-center"
+                                        >
+                                            <h3>Grand Total:</h3>
+                                            <div>
+                                                ₹ {{ calculations.grandTotal }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <!-- show the calculated details here -->
-                    <div class="w-full">
-                        <div class="border-b pb-4 pt-2">
                             <div
-                                class="flex justify-between gap-8 items-center"
+                                class="flex justify-between items-center py-4 text-base"
                             >
-                                <h3>Total Price:(without gst)</h3>
-                                <div>₹ {{ calculations.totalPrice }}</div>
+                                <p
+                                    class="font-bold text-foreground-light dark:text-foreground-dark"
+                                >
+                                    Grand Total
+                                </p>
+                                <p class="font-bold "><div>₹ {{ calculations.grandTotal }}</div></p>
                             </div>
                         </div>
-                        <div class="border-b pb-4 pt-2">
-                            <div
-                                class="flex justify-between gap-8 items-center"
-                            >
-                                <h3>GST ({{ form.gst }}%):</h3>
-                                <div>₹ {{ calculations.gstAmount }}</div>
+                        <div class="w-full flex flex-col space-y-5">
+                            <div class="space-y-1 w-full">
+                                <Label for="email">User Email</Label>
+                                <Input
+                                    type="email"
+                                    class="w-full"
+                                    v-model="form.email"
+                                />
+                                <ErrorMessage :error="form.errors.email" />
+                            </div>
+                            <div class="space-y-1">
+                                <Label for="offer_valid_date"
+                                    >Offer valid Date
+                                </Label>
+                                <Input
+                                    type="date"
+                                    class="w"
+                                    v-model="form.offer_valid_date"
+                                />
+                                <ErrorMessage
+                                    :error="form.errors.offer_valid_date"
+                                />
                             </div>
                         </div>
-                        <div class="border-b pb-4 pt-2">
-                            <div
-                                class="flex justify-between gap-8 items-center"
+
+                        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button
+                                class="w-full bg-primary/10 dark:bg-primary/20  font-bold py-3 px-4 rounded-lg text-sm hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
                             >
-                                <h3>SGST ({{ form.sgst }}%):</h3>
-                                <div>₹ {{ calculations.sgstAmount }}</div>
-                            </div>
-                        </div>
-                        <div class="border-b pb-4 pt-2">
-                            <div
-                                class="flex justify-between gap-8 items-center"
+                                View PDF
+                            </button>
+                            <button
+                                class="w-full bg-primary/10 dark:bg-primary/20  font-bold py-3 px-4 rounded-lg text-sm hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
                             >
-                                <h3>Grand Total:</h3>
-                                <div>₹ {{ calculations.grandTotal }}</div>
-                            </div>
+                                Send Mail
+                            </button>
+                            <button
+                                class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark text-foreground-light dark:text-foreground-dark font-bold py-3 px-4 rounded-lg text-sm hover:bg-border-light dark:hover:bg-border-dark transition-colors"
+                            >
+                                Back to Calculator
+                            </button>
+                            <button
+                                class="w-full bg-primary  font-bold py-3 px-4 rounded-lg text-sm hover:bg-primary/90 transition-colors"
+                            >
+                                Save/Export
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="mb-6 mt-16 space-y-5 lg:space-y-0 lg:flex gap-6">
-                    <Button
-                        type="submit"
-                        class="cursor-pointer w-full border border-button  hover:bg-button-hover hover:text-white font-semibold py-2 px-4 rounded-md transition duration-300"
-                    >
-                        Back to calculator
-                    </Button>
-                    <Button
-                        type="submit"
-                        class="cursor-pointer w-full bg-button hover:bg-button-hover text-white font-semibold py-2 px-4 rounded-md transition duration-300"
-                    >
-                        Preview Pdf
-                    </Button>
-
-                    <Button
-                        type="submit"
-                        class="cursor-pointer w-full border border-button hover:bg-button-hover text-black hover:text-white font-semibold py-2 px-4 rounded-md transition duration-300"
-                    >
-                        Send Email
-                    </Button>
-                    <Button
-                        type="submit"
-                        class="cursor-pointer w-full bg-button hover:bg-button-hover text-white font-semibold py-2 px-4 rounded-md transition duration-300"
-                    >
-                        Download Pdf
-                    </Button>
-                </div>
             </form>
         </div>
     </AdminLayout>

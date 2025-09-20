@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminFilmController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AdminSessionController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::prefix('/admin')->name('admin.')->middleware('role:admin,superadmin')->gr
     Route::resource('/categories', AdminCategoryController::class);
     Route::resource('/films', AdminFilmController::class);
     Route::resource('/roles', AdminRoleController::class);
+    Route::resource('/users', AdminUserController::class);
     Route::get('/calculator', [AdminCalculatorController::class, 'index'])->name('calculator.index');
     Route::post('/calculator', [AdminCalculatorController::class, 'store'])->name('calculator.store');
     Route::get('/calculator/show', [AdminCalculatorController::class, 'show'])->name('calculator.show');

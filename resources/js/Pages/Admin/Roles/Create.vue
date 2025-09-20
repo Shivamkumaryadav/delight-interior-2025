@@ -27,7 +27,7 @@ function store()
             <form @submit.prevent="store">
                 <div class="space-y-1">
                     <Label for="name">Name</Label>
-                    <Input v-model="form.name"/>
+                    <Input v-model="form.name" class="py-3"/>
                     <ErrorMessage :error="form.errors.name" />
 
                 </div>

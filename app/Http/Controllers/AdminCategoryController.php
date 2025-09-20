@@ -34,7 +34,7 @@ class AdminCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3'
+            'name' => 'required|min:3|unique:categories,name'
         ]);
 
         Category::create([
@@ -70,7 +70,7 @@ class AdminCategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required|min:3'
+            'name' => 'required|min:3|unique:categories,name,' . $category->id
         ]);
 
         $category->update([

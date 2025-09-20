@@ -7,19 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class RoleMiddleware {
+class RoleMiddleware
+{
     /**
-    * Handle an incoming request.
-    *
-    * @param  \Closure( \Illuminate\Http\Request ): ( \Symfony\Component\HttpFoundation\Response )  $next
-    */
+     * Handle an incoming request.
+     *
+     * @param  \Closure( \Illuminate\Http\Request ): ( \Symfony\Component\HttpFoundation\Response )  $next
+     */
 
-    public function handle( Request $request, Closure $next, ...$role ): Response {
-        if ( Auth::check() && Auth::user()->hasRole( $role ) ) {
-            return $next( $request );
-
+    public function handle(Request $request, Closure $next, ...$roles): Response
+    {
+        if (Auth::check() && Auth::user()->hasRole($roles)) {
+            return $next($request);
         }
-        // abort not authorized to access this page or redirect to home page
-        return redirect( '/' );
+
+        return redirect('/'); // or abort(403);
     }
 }
