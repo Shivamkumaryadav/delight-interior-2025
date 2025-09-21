@@ -6,11 +6,15 @@ use App\Http\Requests\AdminFilmRequest;
 use App\Http\Resources\AdminFilmResource;
 use App\Models\Category;
 use App\Models\Film;
+use App\Traits\ImageUpload;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class AdminFilmController extends Controller
 {
+
+    use ImageUpload;
+
     /**
      * Display a listing of the resource.
      */
@@ -37,20 +41,25 @@ class AdminFilmController extends Controller
      */
     public function store(AdminFilmRequest $request)
     {
-        // dd($request->all());
-        // image is not required i will handle it later with traits
-        Film::create([
+        $attributes = [
             'name' => $request->name,
             'description' => $request->description,
             'uv_rejection' => $request->uv_rejection,
             'thickness' => $request->thickness,
             'warranty' => $request->warranty,
             'price' => $request->price,
-            'image' => 'images',
             'slug' => str()->slug($request->name),
             'category_id' => $request->category
+        ];
 
-        ]);
+        // Upload the image
+        if ($request->hasFile('image')) {
+            // Save in "storage/app/public/films"
+            $imagePath = $this->uploadImage('image', 'films');
+            $attributes['image'] = $imagePath;
+        }
+
+        Film::create($attributes);
         session('success', 'Film has been created.');
         return redirect()->route('admin.films.index');
     }

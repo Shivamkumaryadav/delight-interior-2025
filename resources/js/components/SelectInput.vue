@@ -12,7 +12,7 @@
     <button
       type="button"
       @click="open = !open"
-      class="w-full px-3 py-3 border rounded-md border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none flex justify-between items-center"
+      class="w-full px-3 py-[9px] border rounded-md border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none flex justify-between items-center"
     >
       <span>{{ selectedLabel || placeholder }}</span>
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

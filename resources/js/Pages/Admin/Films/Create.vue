@@ -20,10 +20,16 @@ const form = useForm({
     description: "",
     thickness: "",
     uv_rejection: "",
-    warranty : ''
+    warranty : '',
+    image : null,
 });
+function handleFileChange(event) {
+  form.image = event.target.files[0]; // actual File object
+}
 function store() {
-    form.post("/admin/films");
+    form.post("/admin/films",{
+          forceFormData: true,
+    });
 }
 </script>
 
@@ -65,6 +71,11 @@ function store() {
                         <Label for="uv-rejection">Uv Rejection</Label>
                         <Input class="flex py-5 border border-gray-300 focus:broder-0 focus:ring-red-500" v-model="form.uv_rejection" />
                         <ErrorMessage :error="form.errors.uv_rejection" />
+                    </div>
+                     <div class="space-y-1 flex-1">
+                        <Label for="name">Image</Label>
+                        <Input type="file" class="flex py-5 border border-gray-300 focus:broder-0 focus:ring-red-500" @change="handleFileChange" />
+                        <ErrorMessage :error="form.errors.image" />
                     </div>
                 </div>
 

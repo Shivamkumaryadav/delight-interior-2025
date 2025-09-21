@@ -19,6 +19,7 @@ class AdminFilmResource extends JsonResource
             'name' => $this->name,
             'warranty' => $this->warranty,
             'price' => $this->price,
+            'uv_rejection' => $this->uv_rejection,
             'thickness' => $this->thickness,
             'created_at' => $this->created_at?->diffForHumans(),
             'updated_at' => $this->updated_at?->diffForHumans(),
