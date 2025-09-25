@@ -9,7 +9,6 @@ const films = computed(() => page.props.films.data);
 </script>
 
 <template>
-    <AdminLayout>
         <div class="flex  font-sans mb-5">
             <h3>Dashboard</h3>
             /Films
@@ -212,5 +211,4 @@ const films = computed(() => page.props.films.data);
         </div>
         <!-- pagination -->
         <Pagination :links="categories" />
-    </AdminLayout>
 </template>

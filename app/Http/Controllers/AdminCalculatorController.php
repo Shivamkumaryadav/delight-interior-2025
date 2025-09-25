@@ -55,12 +55,13 @@ class AdminCalculatorController extends Controller
     {
         // dd(session()->get('film_calculations'));
         // get the film id from the session film_calculations
-        $filmId = session()->get('film_calculations.film_type');
-        $film = Film::select('id', 'name')->findOrFail($filmId);
+        // $filmId = session()->get('film_calculations.film_type');
+        // $film = Film::select('id', 'name')->find($filmId);
+        // dd($film);
 
         return Inertia::render('Admin/Calculator/Show', [
-            'calculations' => session()->get('film_calculations') ?? null, //preventing from showing error if any case the session data is not set
-            'film' => $film
+            'calculations' => session()->get('invoice_items') ?? null, //preventing from showing error if any case the session data is not set
+            // 'film' => $film
         ]);
     }
 

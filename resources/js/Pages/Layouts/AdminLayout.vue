@@ -18,7 +18,7 @@ watch(
             }, 5000);
         }
     },
-    { immediate: true }
+    { immediate: true },
 );
 </script>
 
@@ -26,7 +26,7 @@ watch(
     <div class="bg-[#fafafa] bgred-500 flex flex-col h-screen gap-1">
         <Navbar />
         <Sidebar />
-        <div class="p-4 sm:ml-64 flex-1">
+        <div class="p-4 sm:ml-64 flex-1 ">
             <div class=" rounded-lg mt-14">
                 <slot></slot>
             </div>

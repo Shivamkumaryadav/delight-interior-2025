@@ -23,7 +23,6 @@ function store() {
 </script>
 
 <template>
-    <AdminLayout>
         <div class="flex text-white font-sans mb-5">
             <h3>Dashboard</h3>
             /users/create
@@ -68,5 +67,4 @@ function store() {
                 </div>
             </form>
         </div>
-    </AdminLayout>
 </template>

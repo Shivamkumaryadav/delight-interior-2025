@@ -21,7 +21,6 @@ function update()
 </script>
 
 <template>
-    <AdminLayout>
         <div class="flex font-sans mb-5">
             <h3>Dashboard</h3>
             /categories/{{category.name}}/edit
@@ -52,5 +51,4 @@ function update()
             </div>
         </div>
 
-    </AdminLayout>
 </template>

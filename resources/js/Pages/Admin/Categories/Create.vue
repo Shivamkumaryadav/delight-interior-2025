@@ -16,7 +16,6 @@ function store() {
 </script>
 
 <template>
-    <AdminLayout>
         <div class="flex font-sans mb-5">
             <h3>Dashboard</h3>
             /categories/create
@@ -46,5 +45,4 @@ function store() {
                 </form>
             </div>
         </div>
-    </AdminLayout>
 </template>

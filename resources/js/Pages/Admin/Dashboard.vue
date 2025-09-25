@@ -1,10 +1,14 @@
-<script setup lang="ts">
+<script setup>
 import AdminLayout from "../Layouts/AdminLayout.vue";
+
+// defineOptions({
+//     layout : AdminLayout
+// });
 </script>
 
 <template>
-    <AdminLayout>
+    <!-- <AdminLayout>
 
-       
-    </AdminLayout>
+
+    </AdminLayout> -->
 </template>

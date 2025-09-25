@@ -31,7 +31,6 @@ function update() {
 </script>
 
 <template>
-    <AdminLayout>
         <div class="flex font-sans mb-5">
             <h3>Dashboard</h3>
             /films/update
@@ -106,5 +105,4 @@ function update() {
                 </div>
             </form>
         </div>
-    </AdminLayout>
 </template>

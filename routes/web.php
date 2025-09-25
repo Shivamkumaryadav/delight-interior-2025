@@ -51,14 +51,17 @@ Route::prefix('/admin')->name('admin.')->middleware('role:admin,superadmin')->gr
     Route::get('/calculator', [AdminCalculatorController::class, 'index'])->name('calculator.index');
     Route::post('/calculator', [AdminCalculatorController::class, 'store'])->name('calculator.store');
     Route::delete('/calculator/remove-item', [AdminCalculatorController::class, 'removeItem'])->name('calculator.destory');
-    Route::delete('/calculator/destory', [AdminCalculatorController::class, 'destory'])->name('calculator.forget');
+    Route::delete('/calculator/delete', [AdminCalculatorController::class, 'destroy'])->name('calculator.forget');
 
 
     Route::get('/calculator/show', [AdminCalculatorController::class, 'show'])->name('calculator.show');
 
     //Generate the invoice
+    Route::get('/invoice/{name}', [InvoiceController::class, 'show'])->name('invoice.show');
     Route::post('/invoice-generate', [InvoiceController::class, 'generate']);
 });
+
+    // Route::get('/invoice-generate', [InvoiceController::class, 'test']);
 
 // Route::get('/admin', function(){
 //     User::create([

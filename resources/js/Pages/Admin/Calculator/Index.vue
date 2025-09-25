@@ -1,14 +1,13 @@
 <template>
-    <AdminLayout>
-        <div class="flex text-white font-sans mb-5">
+        <div class="flex  font-sans mb-5">
             <h3>Dashboard</h3>
             /calculator
         </div>
 
-        <div class="bg- shadow-md mt-16 rounded-lg border border-gray-200">
+        <div class="bg- shadow-md mt-16 rounded-lg border border-gray-200 max-w-5xl mx-auto">
             <form
                 @submit.prevent="store"
-                class="max-w-5xl mx-auto p-6 space-y-6"
+                class="mx-auto p-6 space-y-6"
             >
                 <!-- Title -->
                 <div class="flex justify-between items-center">
@@ -73,6 +72,7 @@
                         <input
                             v-model="form.gst"
                             placeholder="Enter gst %"
+                            inputmode="numeric"
                             class="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900"
                         />
                         <ErrorMessage :error="form.errors.gst" />
@@ -117,6 +117,7 @@
 
                         <div>
                             <h3
+                            type="button"
                                 @click="clearInvoices"
                                 class="cursor-pointer text-sm bg-red-500 px-2 py-2 text-white rounded-lg"
                             >
@@ -193,16 +194,17 @@
                         Grand Total: ₹ {{ grandTotal.toFixed(2) }}
                     </p>
 
-                    <!-- Send via Email -->
-                    <div class="mt-4 w-full">
-                        <Link
-                            href=""
-                            class="px-3 py-2 rounded-lg text-white border border-red-500 font-semibold bg-red-500"
-                            >Generate Invoice</Link
-                        >
-                    </div>
+
                 </div>
             </form>
+            <!-- Send via Email -->
+                    <div class="mt-4 w-full">
+                        <button
+                            @click="generateInvoice"
+                            class="px-3 py-2 rounded-lg text-white border border-red-500 font-semibold bg-red-500"
+                            >Generate Invoice</button
+                        >
+                    </div>
         </div>
         <!-- <div class="mt-6 space-y-2">
             <p class="text-white font-semibold">
@@ -218,7 +220,6 @@
                 Grand Total: ₹ {{ grandTotal.toFixed(2) }}
             </p>
         </div> -->
-    </AdminLayout>
 </template>
 
 <script setup>
@@ -260,6 +261,22 @@ const form = useForm({
     },
 });
 
+// function to generate the invoice
+function generateInvoice() {
+    router.post('/admin/invoice-generate', {}, {
+        onSuccess: (page) => {
+            // Open the generated PDF in a new tab
+            if (page.props.pdf_url) {
+                window.open(page.props.pdf_url, '_blank');
+            }
+        },
+        onError: (errors) => {
+            console.error('Error generating invoice:', errors);
+        },
+        preserveScroll: true
+    });
+}
+
 // function to calulate
 function calculate() {
     const length = parseFloat(form.length) || 0;
@@ -285,9 +302,9 @@ function removeItem(index) {
 
 // Clear all the invoices
 function clearInvoices() {
-    router.delete("/calculator/destory", {
-        preserveScroll: true, // optional: keep scroll position
-    });
+    router.delete("/admin/calculator/delete", {
+    preserveScroll: true,
+  });
 }
 
 //function to send the data to the controller

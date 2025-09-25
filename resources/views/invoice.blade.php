@@ -5,64 +5,8 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Invoice</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#4F46E5",
-                        "background-light": "#F9FAFB",
-                        "background-dark": "#111827",
-                        "card-light": "#FFFFFF",
-                        "card-dark": "#1F2937",
-                        "text-light": "#1F2937",
-                        "text-dark": "#F9FAFB",
-                        "subtext-light": "#6B7280",
-                        "subtext-dark": "#9CA3AF",
-                        "border-light": "#E5E7EB",
-                        "border-dark": "#374151"
-                    },
-                    fontFamily: {
-                        sans: ["Inter", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                        lg: "1rem",
-                    },
-                },
-            },
-        };
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-        .bordered-section>div,
-        .bordered-section>p {
-            border: 1px solid #E5E7EB;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-        }
-
-        .dark .bordered-section>div,
-        .dark .bordered-section>p {
-            border-color: #374151;
-        }
-
-        .cost-summary-item {
-            border: 1px solid #E5E7EB;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-        }
-
-        .dark .cost-summary-item {
-            border-color: #374151;
-        }
-    </style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">

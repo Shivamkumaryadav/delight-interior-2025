@@ -10,7 +10,6 @@ const users = computed(() => page.props.users);
 </script>
 
 <template>
-    <AdminLayout>
         <div class="flex text-white font-sans mb-5">
             <h3>Dashboard</h3>
             /users
@@ -185,5 +184,4 @@ const users = computed(() => page.props.users);
             </div>
         </div>
         <Pagination :links="users.meta"/>
-    </AdminLayout>
 </template>

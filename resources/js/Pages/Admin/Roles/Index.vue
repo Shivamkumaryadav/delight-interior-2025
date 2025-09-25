@@ -10,7 +10,6 @@ const roles = computed(() => page.props.roles);
 </script>
 
 <template>
-    <AdminLayout>
         <div class="flex text-white font-sans mb-5">
             <h3>Dashboard</h3>
             /roles
@@ -174,5 +173,4 @@ const roles = computed(() => page.props.roles);
             </div>
         </div>
         <Pagination :links="roles"/>
-    </AdminLayout>
 </template>

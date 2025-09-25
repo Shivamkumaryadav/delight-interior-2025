@@ -10,7 +10,6 @@ const categories = computed(() => page.props.categories);
 </script>
 
 <template>
-    <AdminLayout>
         <div class="flex font-sans mb-5">
             <h3>Dashboard</h3>
             /categories
@@ -171,5 +170,4 @@ const categories = computed(() => page.props.categories);
             </div>
         </div>
         <Pagination :links="categories" />
-    </AdminLayout>
 </template>
