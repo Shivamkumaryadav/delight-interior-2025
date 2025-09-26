@@ -1,5 +1,4 @@
 <template>
-    <AppLayout>
         <!-- hero section slider banner -->
         <div class="w-full rounded-xl relative">
             <div
@@ -447,7 +446,6 @@
                 </div>
             </div>
         </div>
-    </AppLayout>
 </template>
 
 <script setup>

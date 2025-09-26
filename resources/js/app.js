@@ -21,7 +21,7 @@ createInertiaApp({
         // Allow page to define its own layout
         // If not set, apply default (AdminLayout / AppLayout)
         if (!page.layout) {
-            page.layout = name.startsWith("Admin/") ? AdminLayout : AppLayout;
+            page.layout =  name.startsWith("Auth/") ? '' :  name.startsWith("Admin/") ? AdminLayout : AppLayout;
         }
 
         return page;

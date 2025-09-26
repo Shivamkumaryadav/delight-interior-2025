@@ -1,5 +1,4 @@
 <template>
-    <AppLayout>
         <h3>Films / Sun control films</h3>
        <div class="w-full rounded-xl relative">
             <div
@@ -31,7 +30,6 @@
                 </div>
             </div>
         </div>
-    </AppLayout>
 </template>
 <script setup lang="ts">
 import AppLayout from "@/Pages/Layouts/AppLayout.vue";
