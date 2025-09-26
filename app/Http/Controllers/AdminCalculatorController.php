@@ -10,7 +10,7 @@ class AdminCalculatorController extends Controller
 {
     public function index()
     {
-
+        // session()->forget('invoice_items');
         $items = session()->get('invoice_items', []);
 
 
@@ -53,17 +53,44 @@ class AdminCalculatorController extends Controller
 
     public function show(Request $request)
     {
-        // dd(session()->get('film_calculations'));
-        // get the film id from the session film_calculations
-        // $filmId = session()->get('film_calculations.film_type');
-        // $film = Film::select('id', 'name')->find($filmId);
-        // dd($film);
+        $invoiceData = session()->get('invoice_items') ?? [];
 
+        $totalGST = 0;
+        $totalSGST = 0;
+        $overallSubtotal = 0;
+        $grandTotal = 0;
+
+        // Calculate GST, SGST, and grand total for each item
+        foreach ($invoiceData as &$item) {
+            $baseAmount = $item['price'] * $item['length']; // total without taxes
+
+            $gstAmount = ($baseAmount * $item['gst']) / 100;
+            $sgstAmount = ($baseAmount * $item['sgst']) / 100;
+
+            $item['subtotal'] = $baseAmount;
+            $item['gst_amount'] = $gstAmount;
+            $item['sgst_amount'] = $sgstAmount;
+            $item['total_with_tax'] = $baseAmount + $gstAmount + $sgstAmount;
+
+            $totalGST += $gstAmount;
+            $totalSGST += $sgstAmount;
+            $overallSubtotal += $baseAmount;
+            $grandTotal += $item['total_with_tax'];
+        }
+        unset($item); // break reference
+
+        // Pass data to Inertia view
         return Inertia::render('Admin/Calculator/Show', [
-            'calculations' => session()->get('invoice_items') ?? null, //preventing from showing error if any case the session data is not set
-            // 'film' => $film
+            'calculations' => $invoiceData,
+            'totals' => [
+                'subtotal' => $overallSubtotal,
+                'total_gst' => $totalGST,
+                'total_sgst' => $totalSGST,
+                'grand_total' => $grandTotal,
+            ],
         ]);
     }
+
 
     public function removeItem(Request $request)
     {

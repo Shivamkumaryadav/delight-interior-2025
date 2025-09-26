@@ -1,0 +1,1 @@
+import{J as e,o as r,m as o,K as s,k as t,n}from"./app-D6CDPDBM.js";const d={__name:"NavigationLink",setup(l){return(a,i)=>(r(),e(t(n),{class:"bg-red-500 rounded-xl px-3 py-2 transition-all duration-300 ease-in-out transform hover:scale-101 hover:bg-red-600 hover:shadow-lg active:scale-95"},{default:o(()=>[s(a.$slots,"default")]),_:3}))}};export{d as _};
