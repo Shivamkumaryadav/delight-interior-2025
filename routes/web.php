@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminBankController;
 use App\Http\Controllers\AdminCalculatorController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminDashboardController;
@@ -59,6 +60,7 @@ Route::prefix('/admin')->name('admin.')->middleware('role:admin,superadmin')->gr
     //Generate the invoice
     Route::get('/invoice/{name}', [InvoiceController::class, 'show'])->name('invoice.show');
     Route::post('/invoice-generate', [InvoiceController::class, 'generate']);
+    Route::post('/update/bank-details', [AdminBankController::class, 'update']);
 });
 
     // Route::get('/invoice-generate', [InvoiceController::class, 'test']);

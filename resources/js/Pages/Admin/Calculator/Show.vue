@@ -1,59 +1,3 @@
-<script setup>
-import Summernote from "@/components/admin/Summernote.vue";
-import Button from "@/components/Button.vue";
-import ErrorMessage from "@/components/ErrorMessage.vue";
-import NavigationLink from "@/components/NavigationLink.vue";
-import SelectInput from "@/components/SelectInput.vue";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import AdminLayout from "@/Pages/Layouts/AdminLayout.vue";
-import { useForm, usePage } from "@inertiajs/vue3";
-import { computed, ref, watch } from "vue";
-
-const page = usePage();
-const film = computed(() => page.props.film);
-const items = computed(() => page.props.calculations);
-const totals = computed(() => page.props.totals);
-
-const totalPrice = ref(0);
-const gstAmount = ref(0);
-const sgstAmount = ref(0);
-const grandTotal = ref(0);
-
-const form = useForm({
-    offer_valid_date: "",
-    email: "",
-    film_calculations: {
-        totalPrice: null,
-        gstAmount: null,
-        sgstAmount: null,
-        grandTotal: null,
-    },
-});
-const billToContent = ref("<p>Type client details here...</p>");
-// function to send email (i will do this later after learning the pdf view format)
-function store() {
-    form.post("/admin/calculator");
-}
-
-// watch(
-//     () => [form.length, form.price, form.gst, form.sgst],
-//     () => {
-//         const length = parseFloat(form.length) || 0;
-//         const price = parseFloat(form.price) || 0;
-//         const gst = parseFloat(form.gst) || 0;
-//         const sgst = parseFloat(form.sgst) || 0;
-
-//         totalPrice.value = length * price;
-//         gstAmount.value = (totalPrice.value * gst) / 100;
-//         sgstAmount.value = (totalPrice.value * sgst) / 100;
-//         grandTotal.value =
-//             totalPrice.value + gstAmount.value + sgstAmount.value;
-//     },
-//     { immediate: true },
-// );
-</script>
-
 <template>
     <div class="flex flex-col w-full">
         <!-- allow full width but center -->
@@ -223,13 +167,18 @@ function store() {
                             {{ totals.subtotal }}
                         </td>
                     </tr>
+                    <tr>
+                        <span class="text-lg font-bold">
+                            Grand Total : {{ totals.grand_total }}</span
+                        >
+                    </tr>
                 </tbody>
             </table>
         </div>
 
         <!-- Other Sections (Payment Terms, Bank Details, etc.) -->
         <h3
-            class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4"
+            class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 mt-10"
         >
             Payment Terms
         </h3>
@@ -248,125 +197,254 @@ function store() {
             </label>
         </div>
 
-        <h3
-            class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4"
-        >
-            Bank Details
-        </h3>
-        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-            <label class="flex flex-col min-w-40 flex-1">
-                <p
-                    class="text-[#111418] text-base font-medium leading-normal pb-2"
-                >
-                    Bank Name
-                </p>
-                <div class="flex w-full flex-1 items-stretch rounded-xl">
-                    <input
-                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dbe0e6] bg-white focus:border-[#dbe0e6] h-14 placeholder:text-[#617589] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal"
-                        value=""
-                    />
-                    <div
-                        class="text-[#617589] flex border border-[#dbe0e6] bg-white items-center justify-center pr-[15px] rounded-r-xl border-l-0"
-                        data-icon="Lock"
-                        data-size="24px"
-                        data-weight="regular"
+        <form @submit.prevent="update">
+            <h3
+                class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4"
+            >
+                Bank Details
+            </h3>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                <label class="flex flex-col min-w-40 flex-1">
+                    <p
+                        class="text-[#111418] text-base font-medium leading-normal pb-2"
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24px"
-                            height="24px"
-                            fill="currentColor"
-                            viewBox="0 0 256 256"
+                        Bank Name
+                    </p>
+                    <div class="flex w-full flex-1 items-stretch rounded-xl">
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dbe0e6] bg-white focus:border-[#dbe0e6] h-14 placeholder:text-[#617589] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal"
+                            v-model="form.bank_name"
+                            :readonly="!isEditBankDetails"
+                        />
+                        <div
+                            class="text-[#617589] flex border border-[#dbe0e6] bg-white items-center justify-center pr-[15px] rounded-r-xl border-l-0"
+                            data-icon="Lock"
+                            data-size="24px"
+                            data-weight="regular"
                         >
-                            <path
-                                d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-68-56a12,12,0,1,1-12-12A12,12,0,0,1,140,152Z"
-                            ></path>
-                        </svg>
+                            <Lock v-if="!isEditBankDetails" />
+                            <LockOpen v-else />
+                        </div>
                     </div>
-                </div>
-            </label>
-        </div>
-        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-            <label class="flex flex-col min-w-40 flex-1">
-                <p
-                    class="text-[#111418] text-base font-medium leading-normal pb-2"
-                >
-                    Account Number
-                </p>
-                <div class="flex w-full flex-1 items-stretch rounded-xl">
-                    <input
-                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dbe0e6] bg-white focus:border-[#dbe0e6] h-14 placeholder:text-[#617589] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal"
-                        value=""
-                    />
-                    <div
-                        class="text-[#617589] flex border border-[#dbe0e6] bg-white items-center justify-center pr-[15px] rounded-r-xl border-l-0"
-                        data-icon="Lock"
-                        data-size="24px"
-                        data-weight="regular"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24px"
-                            height="24px"
-                            fill="currentColor"
-                            viewBox="0 0 256 256"
-                        >
-                            <path
-                                d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-68-56a12,12,0,1,1-12-12A12,12,0,0,1,140,152Z"
-                            ></path>
-                        </svg>
-                    </div>
-                </div>
-            </label>
-        </div>
-        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-            <label class="flex flex-col min-w-40 flex-1">
-                <p
-                    class="text-[#111418] text-base font-medium leading-normal pb-2"
-                >
-                    Routing Number
-                </p>
-                <div class="flex w-full flex-1 items-stretch rounded-xl">
-                    <input
-                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dbe0e6] bg-white focus:border-[#dbe0e6] h-14 placeholder:text-[#617589] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal"
-                        value=""
-                    />
-                    <div
-                        class="text-[#617589] flex border border-[#dbe0e6] bg-white items-center justify-center pr-[15px] rounded-r-xl border-l-0"
-                        data-icon="Lock"
-                        data-size="24px"
-                        data-weight="regular"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24px"
-                            height="24px"
-                            fill="currentColor"
-                            viewBox="0 0 256 256"
-                        >
-                            <path
-                                d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-68-56a12,12,0,1,1-12-12A12,12,0,0,1,140,152Z"
-                            ></path>
-                        </svg>
-                    </div>
-                </div>
-            </label>
-        </div>
-        <!-- Keep your original blocks but wrapped inside this max-w centered container -->
-
-        <div class="flex justify-stretch">
-            <div class="flex flex-1 gap-3 flex-wrap px-4 py-3">
-                <button
-                    class="flex min-w-[84px] py-2 px-4 bg-[#1172d4] text-white rounded-xl font-bold"
-                >
-                    Generate Invoice
-                </button>
-                <button
-                    class="flex min-w-[84px] py-2 px-4 bg-[#1172d4] text-white rounded-xl font-bold"
-                >
-                    Generate PDF
-                </button>
+                </label>
             </div>
-        </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                <label class="flex flex-col min-w-40 flex-1">
+                    <p
+                        class="text-[#111418] text-base font-medium leading-normal pb-2"
+                    >
+                        Account Number
+                    </p>
+                    <div class="flex w-full flex-1 items-stretch rounded-xl">
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dbe0e6] bg-white focus:border-[#dbe0e6] h-14 placeholder:text-[#617589] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal"
+                            v-model="form.account_number"
+                            :readonly="!isEditBankDetails"
+                        />
+                        <div
+                            class="text-[#617589] flex border border-[#dbe0e6] bg-white items-center justify-center pr-[15px] rounded-r-xl border-l-0"
+                            data-icon="Lock"
+                            data-size="24px"
+                            data-weight="regular"
+                        >
+                            <Lock v-if="!isEditBankDetails" />
+                            <LockOpen v-else />
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                <label class="flex flex-col min-w-40 flex-1">
+                    <p
+                        class="text-[#111418] text-base font-medium leading-normal pb-2"
+                    >
+                        Branch Name
+                    </p>
+                    <div class="flex w-full flex-1 items-stretch rounded-xl">
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dbe0e6] bg-white focus:border-[#dbe0e6] h-14 placeholder:text-[#617589] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal"
+                            v-model="form.branch"
+                            :readonly="!isEditBankDetails"
+                        />
+                        <div
+                            class="text-[#617589] flex border border-[#dbe0e6] bg-white items-center justify-center pr-[15px] rounded-r-xl border-l-0"
+                            data-icon="Lock"
+                            data-size="24px"
+                            data-weight="regular"
+                        >
+                            <Lock v-if="!isEditBankDetails" />
+                            <LockOpen v-else />
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                <label class="flex flex-col min-w-40 flex-1">
+                    <p
+                        class="text-[#111418] text-base font-medium leading-normal pb-2"
+                    >
+                        IFSC CODE
+                    </p>
+                    <div class="flex w-full flex-1 items-stretch rounded-xl">
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dbe0e6] bg-white focus:border-[#dbe0e6] h-14 placeholder:text-[#617589] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal"
+                            v-model="form.ifsc_code"
+                            :readonly="!isEditBankDetails"
+                        />
+                        <div
+                            class="text-[#617589] flex border border-[#dbe0e6] bg-white items-center justify-center pr-[15px] rounded-r-xl border-l-0"
+                            data-icon="Lock"
+                            data-size="24px"
+                            data-weight="regular"
+                        >
+                            <Lock v-if="!isEditBankDetails" />
+                            <LockOpen v-else />
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                <label class="flex flex-col min-w-40 flex-1">
+                    <p
+                        class="text-[#111418] text-base font-medium leading-normal pb-2"
+                    >
+                        Bank Address
+                    </p>
+                    <div class="flex w-full flex-1 items-stretch rounded-xl">
+                        <input
+                            readonly
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dbe0e6] bg-white focus:border-[#dbe0e6] h-14 placeholder:text-[#617589] p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal"
+                            v-model="form.address"
+                            :readonly="isEditBankDetails"
+                        />
+                        <div
+                            class="text-[#617589] flex border border-[#dbe0e6] bg-white items-center justify-center pr-[15px] rounded-r-xl border-l-0"
+                            data-icon="Lock"
+                            data-size="24px"
+                            data-weight="regular"
+                        >
+                            <Lock v-if="!isEditBankDetails" />
+                            <LockOpen v-else />
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <!-- Keep your original blocks but wrapped inside this max-w centered container -->
+
+            <div class="flex justify-stretch">
+                <div class="flex flex-1 gap-3 flex-wrap px-4 py-3">
+                    <button
+                        type="submit"
+                        v-if="isEditBankDetails"
+                        class="flex min-w-[84px] py-2 px-4 bg-[#1172d4] text-white rounded-xl font-bold"
+                    >
+                        Update Bank Details
+                    </button>
+                    <button
+                        v-else
+                        @click="editBankDetails"
+                        class="flex min-w-[84px] py-2 px-4 bg-[#1172d4] text-white rounded-xl font-bold"
+                    >
+                        Edit Bank Details
+                    </button>
+                    <button
+                        type="button"
+                        @click="generateInvoice"
+                        class="flex min-w-[84px] py-2 px-4 bg-[#1172d4] text-white rounded-xl font-bold"
+                    >
+                        Generate PDF
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </template>
+
+<script setup>
+import Summernote from "@/components/admin/Summernote.vue";
+import Button from "@/components/Button.vue";
+import ErrorMessage from "@/components/ErrorMessage.vue";
+import NavigationLink from "@/components/NavigationLink.vue";
+import SelectInput from "@/components/SelectInput.vue";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import AdminLayout from "@/Pages/Layouts/AdminLayout.vue";
+import { router, useForm, usePage } from "@inertiajs/vue3";
+import { Lock, LockOpen } from "lucide-vue-next";
+import { computed, ref, watch } from "vue";
+
+const page = usePage();
+const film = computed(() => page.props.film);
+const items = computed(() => page.props.calculations);
+const totals = computed(() => page.props.totals);
+const bankDetails = computed(() => page.props.bank_details);
+
+const totalPrice = ref(0);
+const gstAmount = ref(0);
+const sgstAmount = ref(0);
+const grandTotal = ref(0);
+
+const form = useForm({
+    bank_name: bankDetails.value?.bank_name || "",
+    branch: bankDetails.value?.branch || "",
+    address: bankDetails.value?.address || "",
+    account_number: bankDetails.value?.account_number || "",
+    ifsc_code: bankDetails.value?.ifsc_code || "",
+    // film_calculations: {
+    //     totalPrice: null,
+    //     gstAmount: null,
+    //     sgstAmount: null,
+    //     grandTotal: null,
+    // },
+});
+
+const billToContent = ref("<p>Type client details here...</p>");
+
+const isEditBankDetails = ref(false);
+
+// function to edit the bank details
+function editBankDetails() {
+    isEditBankDetails.value = true;
+}
+
+// function to update the bank details
+function update() {
+    form.post("/admin/update/bank-details", {
+        preserveScroll: true,
+        onSuccess: () => {
+            isEditBankDetails.value = false;
+        },
+    });
+}
+
+// function to generate the pdf for the invoice
+function generateInvoice() {
+    // Gather all the data needed for PDF generation
+    const payload = {
+        bank_details: form, // All bank fields
+        bill_to: billToContent.value, // Summernote content
+        items: items.value, // Invoice items
+        totals: totals.value, // Totals (GST, subtotal, grand_total)
+    };
+
+    // Check if bank details are still dirty
+    if (form.isDirty) {
+        alert("⚠️ Please update bank details before generating invoice.");
+        return;
+    }
+
+    // Send data to invoice-generate route
+    router.post("/admin/invoice-generate", payload, {
+        preserveState: true,
+        onSuccess: () => {
+            alert("Invoice PDF generated successfully!");
+        },
+        onError: (errors) => {
+            console.error(errors);
+            alert("Something went wrong while generating invoice.");
+        },
+    });
+}
+
+// function to send email (i will do this later after learning the pdf view format)
+</script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BankDetail;
 use App\Models\Film;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -88,6 +89,7 @@ class AdminCalculatorController extends Controller
                 'total_sgst' => $totalSGST,
                 'grand_total' => $grandTotal,
             ],
+            'bank_details' => BankDetail::first()
         ]);
     }
 
