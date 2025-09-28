@@ -1,0 +1,1 @@
+import{d as r,h as t,p as o,t as s}from"./app-DO4SJ9-1.js";const a={key:0,class:"text-red-600 text-sm"},p={__name:"ErrorMessage",props:{error:{type:Object,required:!0}},setup(e){return(c,n)=>e.error?(o(),r("p",a,s(e.error),1)):t("",!0)}};export{p as _};
