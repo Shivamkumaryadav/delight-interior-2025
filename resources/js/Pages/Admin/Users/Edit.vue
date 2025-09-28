@@ -3,6 +3,7 @@ import ErrorMessage from "@/components/ErrorMessage.vue";
 import NavigationLink from "@/components/NavigationLink.vue";
 import ProcesingButton from "@/components/ProcesingButton.vue";
 import SelectInput from "@/components/SelectInput.vue";
+import Breadcumb from "@/components/Breadcumb.vue";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import AdminLayout from "@/Pages/Layouts/AdminLayout.vue";
@@ -26,8 +27,12 @@ function update()
 
 <template>
         <div class="flex text-white font-sans mb-5">
-            <h3>Dashboard</h3>
-            /users/{{ user.id }}/edit
+            <Breadcumb
+            :items="[
+                { text: 'users', url: '/admin/users' },
+                { text: 'edit' }
+            ]"
+        />
         </div>
 
         <div class="bg-white max-w-lg mx-auto mt-16 rounded-lg p-4">

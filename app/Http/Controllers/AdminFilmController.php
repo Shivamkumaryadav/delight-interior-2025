@@ -18,11 +18,22 @@ class AdminFilmController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $films = AdminFilmResource::collection(Film::paginate(10));
+        $search = $request->search;
+
+        $query = Film::query();
+
+        if ($search) {
+            $query->where('name', 'like', "%{$search}%");
+        }
+        // $categories = $query->paginate(10)->withQueryString();
+        $query = $query->paginate(10)->withQueryString();
+
+        $films = AdminFilmResource::collection($query);
         return Inertia::render('Admin/Films/Index', [
-            'films' => $films
+            'films' => $films,
+            'search' => $search
         ]);
     }
 

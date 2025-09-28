@@ -17,11 +17,19 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::with('role')->latest()->paginate(1)->onEachSide(2);
+        $users = User::paginate(1)->onEachSide(2);
+// dd($users->toArray()['links']);
 
         return Inertia::render('Admin/Users/Index', [
-            'users' => UserResource::collection($users),
-        ]);
+        // 'users' => [
+        //     'data' => UserResource::collection($users), // only the data
+        //     'meta' => $users->toArray(), // contains pagination meta including links
+        //     'links' => $users->links(), // now contains onEachSide links
+        // ],
+        'users' => $users,
+            // 'meta' => $users->links()['links'], // contains pagination meta including links
+
+    ]);
     }
 
     /**
@@ -89,8 +97,10 @@ class AdminUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        session()->flash('success', 'User has been deleted');
+        return redirect()->route('admin.users.index');
     }
 }

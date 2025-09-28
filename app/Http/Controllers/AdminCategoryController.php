@@ -11,14 +11,24 @@ class AdminCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $categories = Category::with('projects')->paginate(10);
-        // dd($categories);
-        return Inertia::render('Admin/Categories/Index', [
-            'categories' => $categories
-        ]);
+  public function index(Request $request)
+{
+    $search = $request->search;
+
+    $query = Category::with('projects');
+
+    if($search) {
+        $query->where('name', 'like', "%{$search}%");
     }
+
+    $categories = $query->paginate(10)->withQueryString();
+
+    return Inertia::render('Admin/Categories/Index', [
+        'categories' => $categories,
+        'search' => $search
+    ]);
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -88,7 +98,7 @@ class AdminCategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        session()->flash('success', 'Category has been updated.');
+        session()->flash('success', 'Category has been deleted.');
         return to_route('admin.categories.index');
     }
 }

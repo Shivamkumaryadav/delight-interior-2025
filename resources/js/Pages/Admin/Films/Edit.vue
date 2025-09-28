@@ -10,6 +10,7 @@ import SelectInput from "@/components/SelectInput.vue";
 import { computed } from "vue";
 import Summernote from "@/components/admin/Summernote.vue";
 import ProcesingButton from "@/components/ProcesingButton.vue";
+import Breadcumb from "@/components/Breadcumb.vue";
 
 const page = usePage();
 const film = computed(() => page.props.film);
@@ -32,8 +33,12 @@ function update() {
 
 <template>
         <div class="flex font-sans mb-5">
-            <h3>Dashboard</h3>
-            /films/update
+            <Breadcumb
+            :items="[
+                { text: 'films', url: '/admin/films' },
+                { text: 'edit' },
+            ]"
+        />
         </div>
 
         <div class="bg-white max-w-l mt-16 rounded-lg p-4 border border-gray-200">

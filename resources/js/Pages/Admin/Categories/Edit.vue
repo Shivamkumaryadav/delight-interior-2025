@@ -1,4 +1,5 @@
 <script setup >
+import Breadcumb from "@/components/Breadcumb.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import NavigationLink from "@/components/NavigationLink.vue";
 import ProcesingButton from "@/components/ProcesingButton.vue";
@@ -22,8 +23,12 @@ function update()
 
 <template>
         <div class="flex font-sans mb-5">
-            <h3>Dashboard</h3>
-            /categories/{{category.name}}/edit
+           <Breadcumb
+            :items="[
+                { text: 'categories', url: '/admin/categories' },
+                { text: 'edit'},
+            ]"
+        />
         </div>
 
         <div

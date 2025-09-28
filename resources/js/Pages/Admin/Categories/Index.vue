@@ -1,173 +1,204 @@
 <script setup>
 import NavigationLink from "@/components/NavigationLink.vue";
 import Pagination from "@/components/Pagination.vue";
-import AdminLayout from "@/Pages/Layouts/AdminLayout.vue";
-import { Link, usePage } from "@inertiajs/vue3";
-import { computed } from "vue";
+import Modal from "@/components/Modal.vue";
+import { Link, usePage, router } from "@inertiajs/vue3";
+import { computed, ref, watch } from "vue";
+import Breadcumb from "@/components/Breadcumb.vue";
+import { debounce } from "lodash";
+import { Pencil, Trash2 } from "lucide-vue-next";
 
 const page = usePage();
 const categories = computed(() => page.props.categories);
+const search = ref(page.props.search ?? "");
+
+const showModal = ref(false);
+const categoryToDelete = ref(null);
+
+//function to search
+watch(
+  search,
+  debounce((value) => {
+    router.get(
+      "/admin/categories",
+      { search: value },
+      { preserveState: true, preserveScroll: true }
+    );
+  }, 300) // wait 300ms after user stops typing
+);
+
+
+function confirmDelete(category) {
+    categoryToDelete.value = category;
+    showModal.value = true;
+}
+
+function handleCancel() {
+    showModal.value = false;
+    categoryToDelete.value = null;
+}
+
+function handleDelete() {
+    if (categoryToDelete.value) {
+        router.delete(`/admin/categories/${categoryToDelete.value.id}`, {
+            onFinish: () => {
+                showModal.value = false;
+                categoryToDelete.value = null;
+            },
+        });
+    }
+}
 </script>
 
 <template>
-        <div class="flex font-sans mb-5">
-            <h3>Dashboard</h3>
-            /categories
+    <div class="flex font-sans mb-5">
+        <Breadcumb
+            :items="[{ text: 'Categories', url: '/admin/categories' }]"
+        />
+    </div>
+
+    <div class="flex flex-col">
+        <div class="flex justify-between gap-5 items-center my-6">
+            <h3 class="text-lg font-semibold">Categories Table</h3>
+            <NavigationLink href="/admin/categories/create" class="text-white">
+                Create Category
+            </NavigationLink>
         </div>
 
-        <div class="flex flex-col">
-            <div class="flex justify-between gap-5 items-center my-6">
-                <h3 class="text-lg font-semibold">Categories Table</h3>
-                <NavigationLink href="/admin/categories/create" class="text-white"
-                    >Create Category</NavigationLink
+        <div class="-m-1.5 overflow-x-auto">
+            <div class="p-1.5 min-w-full inline-block align-middle">
+                <div
+                    class="border border-gray-200 rounded-lg divide-y divide-gray-200 bg-white"
                 >
-            </div>
-            <div class="-m-1.5 overflow-x-auto">
-                <div class="p-1.5 min-w-full inline-block align-middle">
-                    <div
-                        class="border border-gray-200 rounded-lg divide-y divide-gray-200 bg-white"
-                    >
-                        <div class="py-3 px-4">
-                            <div class="relative max-w-xs">
-                                <label for="hs-table-search" class="sr-only"
-                                    >Search</label
+                    <!-- Search -->
+                    <div class="py-3 px-4">
+                        <div class="relative max-w-xs">
+                            <label for="hs-table-search" class="sr-only"
+                                >Search</label
+                            >
+                            <input
+                                v-model="search"
+                                type="text"
+                                name="hs-table-search"
+                                id="hs-table-search"
+                                class="py-1.5 sm:py-2 px-3 ps-9 block w-full border-gray-200 shadow-2xs rounded-lg sm:text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                                placeholder="Search for items"
+                            />
+                            <div
+                                class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-3"
+                            >
+                                <svg
+                                    class="size-4 text-gray-400"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
                                 >
-                                <input
-                                    type="text"
-                                    name="hs-table-search"
-                                    id="hs-table-search"
-                                    class="py-1.5 sm:py-2 px-3 ps-9 block w-full border-gray-200 shadow-2xs rounded-lg sm:text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                    placeholder="Search for items"
-                                />
-                                <div
-                                    class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-3"
-                                >
-                                    <svg
-                                        class="size-4 text-gray-400 dark:text-neutral-500"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <path d="m21 21-4.3-4.3"></path>
-                                    </svg>
-                                </div>
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.3-4.3"></path>
+                                </svg>
                             </div>
                         </div>
-                        <div class="overflow-hidden">
-                            <table
-                                class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700"
-                            >
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="py-3 px-4 pe-0">
-                                            <div
-                                                class="flex items-center h-5 hidden"
-                                            >
-                                                <input
-                                                    id="hs-table-search-checkbox-all"
-                                                    type="checkbox"
-                                                    class="border-gray-200 rounded-sm text-blue-600 focus:ring-blue-500 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                                />
-                                                <label
-                                                    for="hs-table-search-checkbox-all"
-                                                    class="sr-only"
-                                                    >Checkbox</label
-                                                >
-                                            </div>
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
-                                        >
-                                            Name
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
-                                        >
-                                            Age
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
-                                        >
-                                            Address
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
-                                        >
-                                            Action
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody
-                                    v-if="categories.data.length"
-                                    class="divide-y divide-gray-200 dark:divide-neutral-700"
-                                >
-                                    <tr
-                                        v-for="category in categories.data"
-                                        :key="category.id"
+                    </div>
+
+                    <!-- Table -->
+                    <div class="overflow-hidden">
+                        <table
+                            class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700"
+                        >
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="py-3 px-4 pe-0"></th>
+                                    <th
+                                        scope="col"
+                                        class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
                                     >
-                                        <td class="py-3 ps-4">
-                                            <div class="flex items-center h-5">
-                                                <input
-                                                    id="hs-table-search-checkbox-1"
-                                                    type="checkbox"
-                                                    class="border-gray-200 rounded-sm text-blue-600 focus:ring-blue-500 dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                                />
-                                                <label
-                                                    for="hs-table-search-checkbox-1"
-                                                    class="sr-only"
-                                                    >Checkbox</label
-                                                >
-                                            </div>
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200"
+                                        Name
+                                    </th>
+
+                                    <th
+                                        scope="col"
+                                        class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                                    >
+                                        Created At
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                                    >
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody
+                                v-if="categories.data.length"
+                                class="divide-y divide-gray-200"
+                            >
+                                <tr
+                                    v-for="category in categories.data"
+                                    :key="category.id"
+                                >
+                                    <td class="py-3 ps-4">
+                                        <input
+                                            type="checkbox"
+                                            class="border-gray-200 rounded-sm text-blue-600 focus:ring-blue-500"
+                                        />
+                                    </td>
+                                    <td
+                                        class="px-6 py-4 text-sm font-medium text-gray-800"
+                                    >
+                                        {{ category.name }}
+                                    </td>
+
+                                    <td class="px-6 py-4 text-sm text-gray-800">
+                                        {{ category.created_at }}
+                                    </td>
+                                    <td
+                                        class="px-6 py-4 text-end text-sm space-x-3 font-medium"
+                                    >
+                                        <Link
+                                            :href="`/admin/categories/${category.id}/edit`"
+                                            class="inline-flex  items-center gap-x-2 text-sm font-semibold text-blue-600 hover:text-blue-800"
                                         >
-                                            {{ category.name }}
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
+                                            <Pencil class="w-5" />
+                                        </Link>
+                                        <button
+                                            type="button"
+                                            @click="confirmDelete(category)"
+                                            class="inline-flex items-center gap-x-2 text-sm font-semibold text-red-600 hover:text-red-600 cursor-pointer"
                                         >
-                                            45
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"
-                                        >
-                                            {{ category.created_at }}
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
-                                        >
-                                            <Link
-                                                :href="`/admin/categories/${category.id}/edit`"
-                                                class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-hidden focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
-                                            >
-                                                Edit
-                                            </Link>
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-hidden focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
-                                            >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                            <Trash2 class="w-5"/>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <Pagination :links="categories" />
+    </div>
+
+    <!-- <Pagination :links="categories" /> -->
+
+    <!-- Modal Teleported to body -->
+    <teleport to="body">
+        <Modal
+            v-model="showModal"
+            @cancel="handleCancel"
+            @delete="handleDelete"
+        >
+            <template #title>Delete Category</template>
+            <template #message>
+                Are you sure you want to delete
+                <span class="font-semibold">{{ categoryToDelete?.name }}</span
+                >?
+            </template>
+        </Modal>
+    </teleport>
 </template>

@@ -1,4 +1,5 @@
 <script setup>
+import Breadcumb from "@/components/Breadcumb.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import NavigationLink from "@/components/NavigationLink.vue";
 import ProcesingButton from "@/components/ProcesingButton.vue";
@@ -24,8 +25,12 @@ function store() {
 
 <template>
         <div class="flex text-white font-sans mb-5">
-            <h3>Dashboard</h3>
-            /users/create
+             <Breadcumb
+            :items="[
+                { text: 'users', url: '/admin/users' },
+                { text: 'create' }
+            ]"
+        />
         </div>
 
         <div class="bg-white max-w-lg mx-auto mt-16 rounded-lg p-4">
