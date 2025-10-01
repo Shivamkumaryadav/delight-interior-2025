@@ -9,8 +9,8 @@
 </head>
 
 <body class="bg-white text-black">
-    <div class="container mx-auto p-4 sm:p-8">
-        <div class="bg-white p-8 rounded-lg shadow-lg">
+    <div class="container mx-auto ">
+        <div class="bg-white">
             <!-- Header -->
             <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-8 border-b border-gray-300">
                 <div class="flex items-center space-x-4 mb-4 sm:mb-0">
@@ -39,7 +39,7 @@
             <div class="py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div>
                     <h2 class="font-semibold text-blue-600 mb-2">BILL TO</h2>
-                    {!! $client['html'] ?? '<p>Type client details here...</p>' !!}
+                    {!! $client !!}
                 </div>
                 <div>
                     <h2 class="font-semibold text-blue-600 mb-2">TAX INVOICE</h2>
@@ -56,7 +56,6 @@
                     <thead class="bg-gray-100 uppercase">
                         <tr>
                             <th class="px-4 py-2 border border-gray-300">Description</th>
-                            <th class="px-4 py-2 border border-gray-300">HSN/SAC</th>
                             <th class="px-4 py-2 border border-gray-300 text-right">Quantity</th>
                             <th class="px-4 py-2 border border-gray-300 text-right">Rate</th>
                             <th class="px-4 py-2 border border-gray-300 text-right">Total</th>
@@ -71,7 +70,6 @@
                         @foreach ($items as $item)
                         <tr>
                             <td class="px-4 py-2 border border-gray-300">{{ $item['description'] ?? '' }}</td>
-                            <td class="px-4 py-2 border border-gray-300">{{ $item['hsn'] ?? '' }}</td>
                             <td class="px-4 py-2 border border-gray-300 text-right">{{ number_format($item['quantity'] ?? 0, 2) }}</td>
                             <td class="px-4 py-2 border border-gray-300 text-right">{{ number_format($item['rate'] ?? 0, 2) }}</td>
                             <td class="px-4 py-2 border border-gray-300 text-right">{{ number_format($item['total'] ?? 0, 2) }}</td>

@@ -398,7 +398,7 @@ const form = useForm({
     // },
 });
 
-const billToContent = ref("<p>Type client details here...</p>");
+const billToContent = ref("");
 
 const isEditBankDetails = ref(false);
 
@@ -436,13 +436,6 @@ function generateInvoice() {
     // Send data to invoice-generate route
     router.post("/admin/invoice-generate", payload, {
         preserveState: true,
-        onSuccess: () => {
-            alert("Invoice PDF generated successfully!");
-        },
-        onError: (errors) => {
-            console.error(errors);
-            alert("Something went wrong while generating invoice.");
-        },
     });
 }
 

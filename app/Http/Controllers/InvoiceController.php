@@ -10,7 +10,9 @@ class InvoiceController extends Controller
 {
     public function generate(Request $request)
     {
+        // dd($request->all());
         $client = $request->input('bill_to', []);
+        // dd($client);
         $company = $request->input('company', [
             'name' => 'DELIGHT INTERIOR SERVICE',
             'address' => '11, Vaishali Sadan, Old Nagardas Rd., Mogra Pada, Andheri (E), Mumbai - 400 069',
@@ -20,12 +22,7 @@ class InvoiceController extends Controller
         ]);
         $itemsRaw = $request->input('items', []);
         $payment = $request->input('payment', ['term' => '100% advance']);
-        $bank = $request->input('bank_details', [
-            'name' => 'Union Bank of India',
-            'branch' => 'Andheri East Branch Mumbai - 400 069',
-            'account_number' => '315301010060059',
-            'ifsc' => 'UBIN0531533'
-        ]);
+        $bank = $request->input('bank_details');
 
         // Map incoming items to template structure
         $items = [];
@@ -71,12 +68,29 @@ class InvoiceController extends Controller
             mkdir(dirname($pdfPath), 0755, true);
         }
 
-        Browsershot::html($html)
-            ->format('A4')
-            ->save($pdfPath);
+        // Browsershot::html($html)
+        //     ->format('A4')
+        //     ->save($pdfPath);
+         Browsershot::html($html)
+                ->setOption('executablePath', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome')
+                ->format('A4')
+                ->showBackground()
+                ->setOption('headless', true)
+                ->setOption('args', [
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                    '--disable-gpu',
+                    '--disable-software-rasterizer',
+                ])
+                ->save($pdfPath);
 
         session()->forget('invoice_items');
-        return redirect()->route('admin.invoice.show', ['name' => $fileName]);
+
+        return Inertia::render('Admin/Invoice/Index', [
+            'pdf_url'  => asset('pdf/' . $fileName),
+            'fileName' => $fileName,
+        ]);
+        // return redirect()->route('admin.invoice.show', ['name' => $fileName]);
     }
 
 

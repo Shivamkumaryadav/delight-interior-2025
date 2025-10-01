@@ -14,7 +14,7 @@ use App\Models\Film;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use Spatie\LaravelPdf\Facades\Pdf;
 
 // home and films routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -63,7 +63,7 @@ Route::prefix('/admin')->name('admin.')->middleware('role:admin,superadmin')->gr
     Route::post('/update/bank-details', [AdminBankController::class, 'update']);
 });
 
-    // Route::get('/invoice-generate', [InvoiceController::class, 'test']);
+    Route::get('/invoice-generate', [InvoiceController::class, 'test']);
 
 // Route::get('/admin', function(){
 //     User::create([
