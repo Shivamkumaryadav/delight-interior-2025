@@ -1,0 +1,1 @@
+import{x as e,p as r,m as s,K as t,k as o,n}from"./app-DO435XG8.js";const d={__name:"NavigationLink",setup(l){return(a,i)=>(r(),e(o(n),{class:"bg-red-500 rounded-xl px-3 py-2 transition-all duration-300 ease-in-out transform hover:scale-101 hover:bg-red-600 hover:shadow-lg active:scale-95"},{default:s(()=>[t(a.$slots,"default")]),_:3}))}};export{d as _};

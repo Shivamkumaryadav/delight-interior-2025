@@ -1,0 +1,15 @@
+import{c as x,_ as k,r as _,w as i,x as g,p as n,m as c,d as u,h as m,e,j as w,M as p,K as a,f}from"./app-DO435XG8.js";/**
+ * @license lucide-vue-next v0.525.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const A=x("pencil",[["path",{d:"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",key:"1a8usu"}],["path",{d:"m15 5 4 4",key:"1mk7zo"}]]);/**
+ * @license lucide-vue-next v0.525.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const D=x("trash-2",[["path",{d:"M3 6h18",key:"d0wm0j"}],["path",{d:"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6",key:"4alrt4"}],["path",{d:"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2",key:"v07s0e"}],["line",{x1:"10",x2:"10",y1:"11",y2:"17",key:"1uufr5"}],["line",{x1:"14",x2:"14",y1:"11",y2:"17",key:"xtxkd"}]]),b={key:0,class:"fixed px-1 inset-0 z-50 flex items-center justify-center"},V={key:0,class:"relative bg-white rounded-lg shadow-xl max-w-lg w-full z-50 py-6 overflow-hidden"},M={class:"px-6 py-4"},C={class:"flex items-start"},j={class:"flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-red-100"},B={class:"ml-4"},z={class:"text-lg font-semibold text-gray-900"},L={class:"mt-2 text-sm text-gray-600"},N={class:"bg-gray-50 px-6 py-3 flex justify-end gap-3"},T={__name:"Modal",props:{modelValue:{type:Boolean,default:!1}},emits:["update:modelValue","cancel","delete"],setup(h,{emit:y}){const r=h,l=y,s=_(r.modelValue);i(()=>r.modelValue,t=>s.value=t),i(s,t=>l("update:modelValue",t));function d(){l("cancel"),s.value=!1}function v(){l("delete"),s.value=!1}return(t,o)=>(n(),g(p,{name:"fade"},{default:c(()=>[s.value?(n(),u("div",b,[e("div",{class:"fixed inset-0 bg-black/50 transition-opacity",onClick:d}),w(p,{name:"scale"},{default:c(()=>[s.value?(n(),u("div",V,[e("div",M,[e("div",C,[e("div",j,[a(t.$slots,"icon",{},()=>[o[0]||(o[0]=e("svg",{class:"h-6 w-6 text-red-600",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24"},[e("path",{"stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"1.5",d:`M12 9v3.75m-9.303 3.376c-.866 1.5.217
+                      3.374 1.948 3.374h14.71c1.73 0
+                      2.813-1.874 1.948-3.374L13.949
+                      3.378c-.866-1.5-3.032-1.5-3.898
+                      0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z`})],-1))],!0)]),e("div",B,[e("h3",z,[a(t.$slots,"title",{},()=>[o[1]||(o[1]=f("Confirm Action",-1))],!0)]),e("div",L,[a(t.$slots,"message",{},()=>[o[2]||(o[2]=f(" Are you sure you want to perform this action? ",-1))],!0)])])])]),e("div",N,[a(t.$slots,"footer",{},()=>[e("button",{onClick:v,class:"cursor-pointer bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-500"}," Delete "),e("button",{onClick:d,class:"cursor-pointer bg-gray-200 px-4 py-2 rounded-md text-sm font-medium text-gray-800 hover:bg-gray-300"}," Cancel ")],!0)])])):m("",!0)]),_:3})])):m("",!0)]),_:3}))}},H=k(T,[["__scopeId","data-v-51ad6208"]]);export{H as M,A as P,D as T};
