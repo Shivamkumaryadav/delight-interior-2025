@@ -36,10 +36,10 @@ function store() {
 
 <template>
     <div class="flex font-sans mb-5">
-       <Breadcumb
+        <Breadcumb
             :items="[
                 { text: 'films', url: '/admin/films' },
-                { text: 'create'},
+                { text: 'create' },
             ]"
         />
     </div>
@@ -88,7 +88,8 @@ function store() {
             </div>
 
             <div class="space-y-5 md:space-y-0 md:flex gap-x-32 my-5">
-                <SelectInput
+               <div class="flex-1">
+                 <SelectInput
                     class="flex-1"
                     v-model="form.category"
                     :options="categories"
@@ -99,6 +100,8 @@ function store() {
                     id="category"
                     placeholder="Please select a category"
                 />
+                <ErrorMessage :error="form.errors.category" />
+               </div>
 
                 <div class="space-y-1 flex-1">
                     <Label for="warranty">Warranty</Label>

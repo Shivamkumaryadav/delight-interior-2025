@@ -1,249 +1,25 @@
 <template>
-    <section>
-        <h3 class="text-md font-semibold md:text-xl">Our Film Solutions</h3>
-
-        <div class="gap-1 flex flex-1 justify-center py-5">
-            <!-- filter films for desktop -->
-            <div class="hidden lg:flex flex-col w-80">
-                <h2
-                    class="text-[#0e141b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5"
-                >
-                    Filters
-                </h2>
-                <div class="px-4">
-                    <label class="flex gap-x-3 py-3 flex-row">
-                        <input
-                            type="checkbox"
-                            class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1773cf] checked:bg-[#1773cf] checked:border-[#1773cf] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
-                        />
-                        <p
-                            class="text-[#0e141b] text-base font-normal leading-normal"
-                        >
-                            Residential
-                        </p>
-                    </label>
-                    <label class="flex gap-x-3 py-3 flex-row">
-                        <input
-                            type="checkbox"
-                            class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1773cf] checked:bg-[#1773cf] checked:border-[#1773cf] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
-                        />
-                        <p
-                            class="text-[#0e141b] text-base font-normal leading-normal"
-                        >
-                            Commercial
-                        </p>
-                    </label>
-                    <label class="flex gap-x-3 py-3 flex-row">
-                        <input
-                            type="checkbox"
-                            class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1773cf] checked:bg-[#1773cf] checked:border-[#1773cf] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
-                        />
-                        <p
-                            class="text-[#0e141b] text-base font-normal leading-normal"
-                        >
-                            Automotive
-                        </p>
-                    </label>
-                </div>
-                <h2
-                    class="text-[#0e141b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5"
-                >
-                    Features
-                </h2>
-                <div class="px-4">
-                    <label class="flex gap-x-3 py-3 flex-row">
-                        <input
-                            type="checkbox"
-                            class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1773cf] checked:bg-[#1773cf] checked:border-[#1773cf] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
-                        />
-                        <p
-                            class="text-[#0e141b] text-base font-normal leading-normal"
-                        >
-                            UV Protection
-                        </p>
-                    </label>
-                    <label class="flex gap-x-3 py-3 flex-row">
-                        <input
-                            type="checkbox"
-                            class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1773cf] checked:bg-[#1773cf] checked:border-[#1773cf] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
-                        />
-                        <p
-                            class="text-[#0e141b] text-base font-normal leading-normal"
-                        >
-                            Heat Rejection
-                        </p>
-                    </label>
-                    <label class="flex gap-x-3 py-3 flex-row">
-                        <input
-                            type="checkbox"
-                            class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1773cf] checked:bg-[#1773cf] checked:border-[#1773cf] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
-                        />
-                        <p
-                            class="text-[#0e141b] text-base font-normal leading-normal"
-                        >
-                            Privacy Level
-                        </p>
-                    </label>
-                    <label class="flex gap-x-3 py-3 flex-row">
-                        <input
-                            type="checkbox"
-                            class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1773cf] checked:bg-[#1773cf] checked:border-[#1773cf] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
-                        />
-                        <p
-                            class="text-[#0e141b] text-base font-normal leading-normal"
-                        >
-                            Glare Reduction
-                        </p>
-                    </label>
-                    <label class="flex gap-x-3 py-3 flex-row">
-                        <input
-                            type="checkbox"
-                            class="h-5 w-5 rounded border-[#d0dbe7] border-2 bg-transparent text-[#1773cf] checked:bg-[#1773cf] checked:border-[#1773cf] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#d0dbe7] focus:outline-none"
-                        />
-                        <p
-                            class="text-[#0e141b] text-base font-normal leading-normal"
-                        >
-                            Warranty
-                        </p>
-                    </label>
-                </div>
-                <h2
-                    class="text-[#0e141b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5"
-                >
-                    Price Range
-                </h2>
-                <div class="@container">
-                    <div
-                        class="relative flex w-full flex-col items-start justify-between gap-3 p-4 @[480px]:flex-row"
-                    >
-                        <p
-                            class="text-[#0e141b] text-base font-medium leading-normal w-full shrink-[3]"
-                        >
-                            Price Range
-                        </p>
-                        <div class="flex h-[38px] w-full pt-1.5">
-                            <div
-                                class="flex h-1 w-full rounded-sm bg-[#d0dbe7] pl-[60%] pr-[15%]"
-                            >
-                                <div class="relative">
-                                    <div
-                                        class="absolute -left-3 -top-1.5 flex flex-col items-center gap-1"
-                                    >
-                                        <div
-                                            class="size-4 rounded-full bg-[#1773cf]"
-                                        ></div>
-                                        <p
-                                            class="text-[#0e141b] text-sm font-normal leading-normal"
-                                        >
-                                            $0
-                                        </p>
-                                    </div>
-                                </div>
-                                <div
-                                    class="h-1 flex-1 rounded-sm bg-[#1773cf]"
-                                ></div>
-                                <div class="relative">
-                                    <div
-                                        class="absolute -left-3 -top-1.5 flex flex-col items-center gap-1"
-                                    >
-                                        <div
-                                            class="size-4 rounded-full bg-[#1773cf]"
-                                        ></div>
-                                        <p
-                                            class="text-[#0e141b] text-sm font-normal leading-normal"
-                                        >
-                                            $1000
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex px-4 py-3">
-                    <button
-                        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 flex-1 bg-[#1773cf] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]"
-                    >
-                        <span class="truncate">Apply Filters</span>
-                    </button>
-                </div>
+    <section class="">
+        <div class="w-full mx-auto text-center bg-white">
+            <div >
+                <img class=""src=""/>
             </div>
-
-            <!-- filters for mobile devices or tablets (bottom to top) -->
-
-            <div
-                class="fixed md:hidden inset-0 flex items-end w-full h-screen bg-gray-100/50"
+            <h1
+                class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight tracking-tighter"
             >
-                <div class="bg-white w-full h-[70vh] p-6">
-                    <h3>Filters</h3>
-
-                    <div class="my-5">
-                        <h3>Film Type</h3>
-                        <div class="space-y-3 mt-3">
-                            <div class="flex gap-3 items-center">
-                                <input type="checkbox" class="" />
-                                <span>Ceramic</span>
-                            </div>
-                            <div class="flex gap-3 items-center">
-                                <input type="checkbox" class="" />
-                                <span>Ceramic</span>
-                            </div>
-                            <div class="flex gap-3 items-center">
-                                <input type="checkbox" class="" />
-                                <span>Ceramic</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="my-5">
-                        <h3>Film Features</h3>
-                        <div class="space-y-3 mt-3">
-                            <div class="flex gap-3 items-center">
-                                <input type="checkbox" class="" />
-                                <span>Ceramic</span>
-                            </div>
-                            <div class="flex gap-3 items-center">
-                                <input type="checkbox" class="" />
-                                <span>Ceramic</span>
-                            </div>
-                            <div class="flex gap-3 items-center">
-                                <input type="checkbox" class="" />
-                                <span>Ceramic</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="my-5">
-                        <h3>Price</h3>
-                        <div class="space-y-3 mt-3">
-                            <div class="flex gap-3 items-center">
-                                <input
-                                    type="text"
-                                    class="w-16 rounded-lg p-1 border"
-                                    placeholder="min"
-                                />
-                                <span>to</span>
-                                <input
-                                    type="text"
-                                    class="w-16 rounded-lg p-1 border"
-                                    placeholder="max"
-                                />
-                                <button>Apply</button>
-                            </div>
-                            <div class="flex gap-3 items-center">
-                                <input type="checkbox" class="" />
-                                <span>100 to 200</span>
-                            </div>
-                            <div class="flex gap-3 items-center">
-                                <input type="checkbox" class="" />
-                                <span>200 to 300</span>
-                            </div>
-                            <div class="flex gap-3 items-center">
-                                <input type="checkbox" class="" />
-                                <span>300 to 500</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                Our Films Solutions
+            </h1>
+            <p
+                class="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
+            >
+                Our journey began with a simple vision: to enhance comfort and
+                energy efficiency in homes and businesses through innovative sun
+                control solutions. Today, we're a leading provider of
+                high-quality window films, committed to excellence and
+                sustainability.
+            </p>
+        </div>
+        <div class="gap-1 flex flex-1 justify-center py-5">
             <!-- end filters for mobile devices or tablets -->
 
             <!-- films section -->
@@ -265,26 +41,85 @@
                     </div>
                 </div>
                 <!-- filter buttons for mobile section -->
+                <div class="sm:flex justify-between gap-5 items-center">
+                    <div class="flex flex-1">
+                        <div class="w-full flex items-center relative">
+                            <div
+                                class="w-full rounded-md border-gray-300"
+                            >
+                                <!-- SearchBox -->
+                                <div class="relative">
+                                    <div class="relative">
+                                        <div
+                                            class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5"
+                                        >
+                                            <svg
+                                                class="shrink-0 size-4 text-gray-400 dark:text-white/60"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            >
+                                                <circle
+                                                    cx="11"
+                                                    cy="11"
+                                                    r="8"
+                                                ></circle>
+                                                <path d="m21 21-4.3-4.3"></path>
+                                            </svg>
+                                        </div>
+                                        <input
+                                            class="py-2.5 py-3 border border-gray-300 sm:w-80 w-full ps-10 pe-4 block w-ful border-gray-200 rounded-lg sm:text-sm focus:border-red-500 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                            type="text"
+                                            role="combobox"
+                                            aria-expanded="false"
+                                            placeholder="Search by film name"
+                                            value=""
+                                        />
+                                    </div>
 
-                <div class="flex justify-between my-5">
-                    <div class="min-w-52 w-auto">
-                        <SelectInput
-                            class="flex-1"
-                            v-model="filmType"
-                            :options="films"
-                            option-label="name"
-                            option-value="id"
-                            label=""
-                            name="name"
-                            id="film"
-                            placeholder=""
-                        />
+                                    <!-- SearchBox Dropdown -->
+                                    <div
+                                        class="absolute z-50 bg-white border border-gray-200 rounded-lg dark:bg-neutral-800 dark:border-neutral-700"
+                                        style="display: none"
+                                        data-hs-combo-box-output=""
+                                    >
+                                        <div
+                                            class="max-h-72 rounded-b-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
+                                            data-hs-combo-box-output-items-wrapper=""
+                                        ></div>
+                                    </div>
+                                    <!-- End SearchBox Dropdown -->
+                                </div>
+                                <!-- End SearchBox -->
+                            </div>
+                        </div>
                     </div>
-                    <div
+                    <div class="flex justify-between my-5">
+                        <div class="min-w-52 w-auto">
+                            <SelectInput
+                                class="flex-1"
+                                v-model="filmType"
+                                :options="categories"
+                                option-label="name"
+                                option-value="id"
+                                label=""
+                                name="name"
+                                id="film"
+                                placeholder=""
+                            />
+                        </div>
+                        <!-- <div
                         class="flex gap-2 rounded-md bg-gray px-3 py-2 cursor-pointer"
                     >
                         <span><Funnel /></span>
                         Filter
+                    </div> -->
                     </div>
                 </div>
                 <!-- <div class="flex gap-3 p-3 flex-wrap pr-4">
@@ -317,7 +152,7 @@
                         </div>
                     </div> -->
                 <div
-                    class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3"
+                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5"
                 >
                     <FilmCard v-for="film in films" :film="film" />
                 </div>
@@ -331,10 +166,11 @@ import FilmCard from "@/components/FilmCard.vue";
 import Input from "@/components/ui/input/Input.vue";
 import AppLayout from "@/Pages/Layouts/AppLayout.vue";
 import { Link, usePage } from "@inertiajs/vue3";
-import { Funnel } from "lucide-vue-next";
+import { Funnel, Search } from "lucide-vue-next";
 import { ref } from "vue";
 
 const page = usePage();
+const categories = page.props.categories;
 const films = page.props.films;
 
 // film change filter

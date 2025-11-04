@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       v-if="isVisible"
-      class="fixed inset-0 z-50 flex items-center justify-center"
+      class="fixed px-1 inset-0 z-50 flex items-center justify-center"
     >
       <!-- Backdrop -->
       <div

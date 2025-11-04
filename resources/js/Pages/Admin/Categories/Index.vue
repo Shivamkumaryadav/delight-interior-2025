@@ -184,7 +184,7 @@ function handleDelete() {
         </div>
     </div>
 
-    <!-- <Pagination :links="categories" /> -->
+    <Pagination :pagination="categories" />
 
     <!-- Modal Teleported to body -->
     <teleport to="body">

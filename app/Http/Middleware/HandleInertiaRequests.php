@@ -37,8 +37,9 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-                'session_success' => session()->get('success') ?? null,
-                'session_error' => session()->get('error') ?? null,
+            'session_success' => session()->get('success') ?? null,
+            'session_error' => session()->get('error') ?? null,
+            'asset' => asset(''),
         ];
     }
 }

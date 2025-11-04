@@ -5,11 +5,13 @@ use App\Http\Controllers\AdminCalculatorController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminFilmController;
+use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AdminSessionController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
+use App\Models\Category;
 use App\Models\Film;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -19,13 +21,16 @@ use Spatie\LaravelPdf\Facades\Pdf;
 // home and films routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/films', function () {
-    $films = Film::select('id', 'name')->get();
+    $categories = Category::select('id', 'name')->get();
+    $films = Film::all();
+
 
     // Prepend "All Films" option with id = 0 (or null)
-    $films = collect([['id' => 0, 'name' => 'All']])
-        ->merge($films);
+    $categories = collect([['id' => 0, 'name' => 'All']])
+        ->merge($categories);
 
     return Inertia::render('Frontend/Films/Index', [
+        'categories' => $categories,
         'films' => $films,
     ]);
 });
@@ -49,6 +54,7 @@ Route::prefix('/admin')->name('admin.')->middleware('role:admin,superadmin')->gr
     Route::resource('/films', AdminFilmController::class);
     Route::resource('/roles', AdminRoleController::class);
     Route::resource('/users', AdminUserController::class);
+    Route::resource('/profile', AdminProfileController::class);
     Route::get('/calculator', [AdminCalculatorController::class, 'index'])->name('calculator.index');
     Route::post('/calculator', [AdminCalculatorController::class, 'store'])->name('calculator.store');
     Route::delete('/calculator/remove-item', [AdminCalculatorController::class, 'removeItem'])->name('calculator.destory');
@@ -72,3 +78,4 @@ Route::prefix('/admin')->name('admin.')->middleware('role:admin,superadmin')->gr
 //         'password' => '00000000'
 //     ]);
 // });
+

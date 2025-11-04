@@ -21,15 +21,26 @@ createInertiaApp({
         // Allow page to define its own layout
         // If not set, apply default (AdminLayout / AppLayout)
         if (!page.layout) {
-            page.layout =  name.startsWith("Auth/") ? '' :  name.startsWith("Admin/") ? AdminLayout : AppLayout;
+            page.layout = name.startsWith("Auth/")
+                ? ""
+                : name.startsWith("Admin/")
+                  ? AdminLayout
+                  : AppLayout;
         }
 
         return page;
     },
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
+        const vueApp = createApp({ render: () => h(App, props) })
             .use(plugin)
-            .use(VueSplide)
-            .mount(el);
+            .use(VueSplide);
+
+        // 🔹 Global helper for public assets
+        const base = props.initialPage.props.asset || "/";
+        vueApp.config.globalProperties.$asset = (path) => {
+            return `${base}${path.replace(/^\/+/, "")}`;
+        };
+
+        vueApp.mount(el);
     },
 });

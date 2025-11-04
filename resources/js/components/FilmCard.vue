@@ -82,23 +82,23 @@
     <div class="flex flex-col gap-3 pb-3">
         <div
             class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg"
-            style="
-                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBVDvmXtrsXvZJp75GQ1YU24ogYFLNFB1gyz6q1rxLmyNUVLf1hnlxs4P8OHj55Lz-hRcgX3YIqKZbCoM0HVzvHPr_0ABqM91KMuGjPDB2vft67KPNOxMfyQ5NjjW_BEWVqhaIGG0jXkBco72ONGyXQlWVfEEnK-52YMaru_jM3gTnp6be41hn-voBG3LGn3ac00U-kAzZkCzZ_UmYto7OQbA-bRyS8_0IHroJrF-bOsBMTk_BMZ4lSwf5S5n5XrOwo7Y4sUuR_DPs&quot;);
-            "
+            :style="{
+                backgroundImage: `url(${$asset('storage/' + film.image)})`,
+            }"
         ></div>
         <div>
             <p class="text-[#0e141b] text-base font-medium leading-normal">
-                Automotive Film 6
+                {{ film.name }}
             </p>
-            <p class="text-[#4e7397] text-sm font-normal leading-normal">
-                UV protection film for vehicles
-            </p>
+            <!-- <p class="text-[#4e7397] text-sm font-normal leading-normal">
+                {{ film.description }}
+            </p> -->
         </div>
     </div>
 </template>
 
 <script setup>
 defineProps({
-    film: Object
-})
+    film: Object,
+});
 </script>

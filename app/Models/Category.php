@@ -8,7 +8,8 @@ class Category extends Model
 {
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
+        'image'
     ];
 
     public function films()

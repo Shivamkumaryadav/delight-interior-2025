@@ -17,8 +17,8 @@ defineProps({
     <li class="inline-flex items-center">
       <Link
         href="/admin/dashboard"
-        class="flex items-center text-sm text-gray-500 hover:text-blue-600
-               dark:text-neutral-500 dark:hover:text-blue-500"
+        class="flex items-center text-sm text-gray-500 hover:text-red-600
+               dark:text-neutral-500 dark:hover:text-red-500"
       >
         Dashboard
       </Link>
@@ -55,9 +55,9 @@ defineProps({
       <!-- Other items (links) -->
       <template v-else>
         <Link
-          :href="item.url"  
-          class="flex capitalize items-center text-sm text-gray-500 hover:text-blue-600
-                 dark:text-neutral-500 dark:hover:text-blue-500"
+          :href="item.url"
+          class="flex capitalize items-center text-sm text-gray-500 hover:text-red-600
+                 dark:text-neutral-500 dark:hover:text-red-500"
         >
           {{ item.text }}
         </Link>

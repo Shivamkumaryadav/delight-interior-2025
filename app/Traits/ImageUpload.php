@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Storage;
 
 trait ImageUpload
 {
-    public function uploadImage($image, $path)
-    {
-        if ($photo = request()->file($image)) {
-            // store on the 'public' disk
-            $imagePath = $photo->store($path, 'public');
-            return $imagePath; // e.g. "films/avatar1.jpg"
+        public function uploadImage($image, $path)
+        {
+            if ($photo = request()->file($image)) {
+                // store on the 'public' disk
+                $imagePath = $photo->store($path, 'public');
+                return $imagePath; // e.g. "films/avatar1.jpg"
+            }
+            return null;
         }
-        return null;
-    }
 
     public function uploadMultipleImage($images, $path)
     {
